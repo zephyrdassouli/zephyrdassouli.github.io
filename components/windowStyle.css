@@ -1,0 +1,14 @@
+.pixel-border {
+  position: relative;
+  border: 1px solid var(--foreground);
+  background: var(--background);
+  box-shadow:
+    2px 0px 0px var(--foreground),
+    -2px 0px 0px var(--foreground),
+    0px 2px 0px var(--foreground),
+    0px -2px 0px var(--foreground),
+    4px 4px 0px var(--background),
+    -4px -4px 0px var(--background),
+    4px -4px 0px var(--background),
+    -4px 4px 0px var(--background);
+}
