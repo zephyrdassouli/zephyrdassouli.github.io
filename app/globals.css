@@ -31,3 +31,7 @@ a, button, .clickable {
 .cursor-move {
   cursor: url('/assets/cursor_move.png') 11 11, grab;
 }
+
+body{
+  color: var(--foreground);
+}
