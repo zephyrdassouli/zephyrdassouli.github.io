@@ -1,7 +1,7 @@
 'use client';
 import { useRouter, usePathname } from 'next/navigation';
 
-const menuItems = ['Home', 'Projects', 'Title2', 'Infos'];
+const menuItems = ['Home', 'Projects', 'Infos', 'Contact'];
 
 export default function SideBar() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export default function SideBar() {
   };
 
   return (
-    <div className="h-screen w-40 bg-background border-r-2 border-foreground z-20 fixed top-0 left-0">
+    <div className="h-screen w-40 bg-background border-r-2 border-foreground z-20 top-0 left-0">
       <div className="flex flex-col pt-20 h-full w-full gap-4">
         {menuItems.map((item) => (
           <button

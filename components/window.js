@@ -4,7 +4,7 @@ import { useAsciiTrail } from '@/utils/useAsciiTrail'; // Updated hook
 import './windowStyle.css';
 import { useState, useEffect } from 'react';
 
-export default function Window({ children, title, width = 300, height = 300, initialTop = 200, initialLeft = 200 }) {
+export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft }) {
   const { position, zIndex, dragListeners } = useDraggableWindow(width, height, initialTop, initialLeft);
   const { canvasRef, addTrail } = useAsciiTrail(); // Use the updated ASCII trail hook
 

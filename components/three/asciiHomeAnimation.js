@@ -17,14 +17,14 @@ export default function AsciiHomeAnimation() {
   useEffect(() => {
     // Scene and Camera Initialization
     const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 1, 3000);
-    camera.position.set(150, -100, 400);
+    camera.position.set(150, -100, 300);
     cameraRef.current = camera;
 
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // Wave Plane
-    const planeGeometry = new THREE.PlaneGeometry(1600, 600, 160, 60);
+    const planeGeometry = new THREE.PlaneGeometry(3000, 600, 300, 60);
     const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true, side: THREE.DoubleSide });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     scene.add(plane);
