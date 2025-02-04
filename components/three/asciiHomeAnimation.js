@@ -12,7 +12,7 @@ export default function AsciiHomeAnimation() {
   const mouse = useRef(new THREE.Vector2());
   const raycaster = useRef(new THREE.Raycaster()).current;
   const planeRef = useRef(null);
-  const animationFrameRef = useRef(null); // To keep track of the animation frame ID
+  const animationFrameRef = useRef(null);
 
   useEffect(() => {
     // Scene and Camera Initialization
@@ -85,7 +85,7 @@ export default function AsciiHomeAnimation() {
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 100) {
             const noise = Math.random() * 50 - 25;
-            influence = Math.exp(-distance * 0.02) * 150 + noise;
+            influence = Math.exp(-distance * 0.02) * 100 + noise;
           }
         }
 
