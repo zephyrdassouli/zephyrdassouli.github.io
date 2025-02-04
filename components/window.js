@@ -1,3 +1,4 @@
+'use client';
 import { useDraggableWindow } from '@/utils/useDraggableWindow';
 import { useAsciiTrail } from '@/utils/useAsciiTrail'; // Updated hook
 import './windowStyle.css';

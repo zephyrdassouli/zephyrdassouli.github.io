@@ -4,11 +4,11 @@ export function useAsciiTrail() {
   const canvasRef = useRef(null);
   const trailRef = useRef([]);
 
-  const asciiChars = ' .:-+*=%@#&$!';
-  const trailLifespan = 7; // lifespan of each trail item in frames
+  const asciiChars = '%$@#*';
+  const trailLifespan = 12; // lifespan of each trail item in frames
   const asciiColor = '#EADEB6'; // The desired color for the ASCII characters
   const verticalOffset = 80; // Vertical offset to lower the trail (adjust this value)
-  const horizontalOffset = -5; // Horizontal offset to shift the trail (adjust this value)
+  const horizontalOffset = -10; // Horizontal offset to shift the trail (adjust this value)
 
   useEffect(() => {
     const canvas = canvasRef.current;
