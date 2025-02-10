@@ -5,7 +5,7 @@ export function useAsciiTrail() {
   const trailRef = useRef([]);
 
   const asciiChars = '%$@#*';
-  const trailLifespan = 12; // lifespan of each trail item in frames
+  const trailLifespan = 20; // lifespan of each trail item in frames
   const asciiColor = '#EADEB6'; // The desired color for the ASCII characters
   const verticalOffset = 80; // Vertical offset to lower the trail (adjust this value)
   const horizontalOffset = -10; // Horizontal offset to shift the trail (adjust this value)

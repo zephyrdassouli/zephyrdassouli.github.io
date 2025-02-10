@@ -29,8 +29,8 @@ export default function Window({ children, title, width = 300, height = 300, ini
             zIndex: zIndex,
           }}
         >
-          <div className="bg-background text-foreground w-full pt-2 pb-2 pr-1 flex justify-between cursor-move" {...dragListeners}>
-            <div>{title}</div>
+          <div className="bg-background w-full pt-2 pb-2 pr-1 flex justify-between cursor-move" {...dragListeners}>
+            <div className="font-black font">{title.toUpperCase()}</div>
             <button onClick={() => setIsVisible(false)} className="text-xl relative bottom-1">
               x
             </button>

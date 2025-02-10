@@ -43,7 +43,7 @@ export default function Projects() {
           <div className="flex items-center gap-6">
             <div className="font-bold text-lg">App development</div>
           </div>
-          <div className="text-sm">
+          <div className=" text-base">
             Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus <br />
             <br />
             Compliance work included analyzing, designing, and updating the app to meet all legal standards and regulations

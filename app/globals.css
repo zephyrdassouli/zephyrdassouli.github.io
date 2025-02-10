@@ -14,7 +14,7 @@
 
 @font-face {
   font-family: "Acer_VGA";
-  src: url("/fonts/Acer_VGA.ttf") format("woff2");
+  src: url("/fonts/Unifont.ttf") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -34,6 +34,8 @@ a, button, .clickable {
 
 body{
   color: var(--foreground);
+  font-size: larger;
+  font-weight: 600;
 }
 
 * {
@@ -41,4 +43,25 @@ body{
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none;    /* Firefox */
   -ms-user-select: none;     /* Internet Explorer/Edge */
+}
+
+
+/* Custom scrollbar */
+.thin-scrollbar {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--foreground) var(--background); /* For Firefox */
+}
+
+/* For WebKit browsers (Chrome, Edge, Safari) */
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Adjust width as needed */
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 0; /* Makes it squared */
 }
