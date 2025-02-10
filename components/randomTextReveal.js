@@ -43,8 +43,8 @@ export default function RandomTextReveal({ text, duration = 1000, className }) {
   }, [mounted, text, duration]);
 
   return (
-    <div style={{ whiteSpace: 'pre-line', width: 'fit-content' }} className={className}>
+    <span style={{ whiteSpace: 'pre-line', width: 'fit-content' }} className={className}>
       {displayText}
-    </div>
+    </span>
   );
 }

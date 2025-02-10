@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
 
-export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, distanceValue = 150 }) {
+export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, distanceValue = 150, blue = false }) {
   const containerRef = useRef(null);
   const effectRef = useRef(null);
   const rendererRef = useRef(null);
@@ -45,8 +45,14 @@ export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, dis
     renderer.setSize(window.innerWidth, window.innerHeight);
     rendererRef.current = renderer;
 
-    // ASCII Effect
+    // Ascii Effect
     const effect = new AsciiEffect(renderer, ' %$@#*', { invert: true });
+    effect.setSize(window.innerWidth, window.innerHeight);
+    if (blue) {
+      effect.domElement.style.color = '#003CFF';
+      effectRef.current = effect;
+    }
+
     effect.setSize(window.innerWidth, window.innerHeight);
     effectRef.current = effect;
 
@@ -147,7 +153,7 @@ export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, dis
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 10,
+        zIndex: -1,
       }}
     />
   );

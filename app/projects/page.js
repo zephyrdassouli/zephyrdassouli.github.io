@@ -38,7 +38,7 @@ export default function Projects() {
       <Window width={300} height={300} title={'Error 2'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
         ERROR! You can not do that
       </Window>
-      <Window width={400} height={500} title={'Transat!'} initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
+      <Window width={400} height={500} title={'Transat!'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-6">
             <div className="font-bold text-lg">App development</div>

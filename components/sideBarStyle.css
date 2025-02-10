@@ -1,39 +1,37 @@
 .text-grad-hover {
-    display: inline-block;
-    background: repeating-linear-gradient(
-      120deg,
-      var(--pred) 0% 25%,
-      var(--porange) 25% 37.5%,
-      var(--pyellow) 37.5% 50%,
-      var(--foreground) 50% 100%
-    );
-    background-size: 400% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: background-position 1s, text-shadow 0.7s ease-in-out;
-    width: 'fit-content';
-  
-  }
-  
-  .text-grad-hover:hover {
-    background-position: 0 0;
-  }
-  
-  .text-glow{
-    text-shadow: 0 0 5px rgba(234, 222, 182, 0.05),
-    0 0 10px rgba(234, 222, 182, 0.1),
-    0 0 20px rgba(234, 222, 182, 0.2);
-  }
-  
-  .text-glow:hover{
-    text-shadow: 0 0 8px rgba(254, 1, 39, 0.3),
-    0 0 15px rgba(254, 1, 39, 0.4),
-    0 0 25px rgba(254, 1, 39, 0.6);
-  }
-  
-  .text-glow-selected{
-    text-shadow: 0 0 8px rgba(254, 1, 39, 0.35),
-    0 0 15px rgba(254, 1, 39, 0.45),
-    0 0 25px rgba(254, 1, 39, 0.65);
-  }
+  display: inline-block;
+  background: repeating-linear-gradient(
+    120deg,
+    var(--pblue) 0% 50%,
+    var(--foreground) 50% 100%
+  );
+  background-size: 400% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 1s, text-shadow 0.7s ease-in-out;
+  width: 'fit-content';
+
+}
+
+.text-grad-hover:hover {
+  background-position: 0 0;
+}
+
+/* .text-glow{
+  text-shadow: 0 0 5px rgba(234, 222, 182, 0.05),
+  0 0 10px rgba(234, 222, 182, 0.1),
+  0 0 20px rgba(234, 222, 182, 0.2);
+}
+
+.text-glow:hover{
+  text-shadow: 0 0 8px rgba(0, 60, 255, 0.3),
+  0 0 15px rgba(0, 60, 255, 0.4),
+  0 0 25px rgba(0, 60, 255, 0.6);
+}
+
+.text-glow-selected{
+  text-shadow: 0 0 8px rgba(0, 60, 255, 0.35),
+  0 0 15px rgba(0, 60, 255, 0.45),
+  0 0 25px rgba(0, 60, 255, 0.65);
+} */

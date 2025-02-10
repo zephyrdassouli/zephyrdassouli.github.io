@@ -10,3 +10,17 @@
     0 0 15px rgba(0,0,0,0.2),
     0 0 25px rgba(0,0,0,0.1);
 }
+
+.pixel-border-blue {
+  position: relative;
+  border: 1px solid var(--pblue);
+  box-shadow:
+    2px 0px 0px var(--pblue),
+    -2px 0px 0px var(--pblue),
+    0px 2px 0px var(--pblue),
+    0px -2px 0px var(--pblue),
+    0 0 8px rgba(0,0,0,0.4),
+    0 0 15px rgba(0,0,0,0.2),
+    0 0 25px rgba(0,0,0,0.1);
+}
+

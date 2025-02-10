@@ -4,7 +4,7 @@ import { useAsciiTrail } from '@/utils/useAsciiTrail'; // Updated hook
 import './windowStyle.css';
 import { useState, useEffect } from 'react';
 
-export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft }) {
+export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft, variant='default' }) {
   const { position, zIndex, dragListeners } = useDraggableWindow(width, height, initialTop, initialLeft);
   const { canvasRef, addTrail } = useAsciiTrail(); // Use the updated ASCII trail hook
 
@@ -19,7 +19,7 @@ export default function Window({ children, title, width = 300, height = 300, ini
     return (
       <>
         <div
-          className="bg-background flex flex-col justify-center items-center p-[8px] pt-1 pixel-border"
+          className={`${variant == 'default' && 'bg-background pixel-border'} ${variant == 'blue' && 'bg-foreground pixel-border-blue'} flex flex-col justify-center items-center p-[8px] pt-1`}
           style={{
             position: 'absolute',
             top: `${position.top}px`,
@@ -29,13 +29,13 @@ export default function Window({ children, title, width = 300, height = 300, ini
             zIndex: zIndex,
           }}
         >
-          <div className="bg-background w-full pt-2 pb-2 pr-1 flex justify-between cursor-move" {...dragListeners}>
+          <div className={`${variant == 'default' && 'bg-background'} ${variant == 'blue' && 'bg-foreground text-pblue'} w-full pt-2 pb-2 pr-1 flex justify-between cursor-move`} {...dragListeners}>
             <div className="font-black font">{title.toUpperCase()}</div>
             <button onClick={() => setIsVisible(false)} className="text-xl relative bottom-1">
               x
             </button>
           </div>
-          <div className="text-background bg-foreground w-full h-full flex items-center justify-center p-4">{children}</div>
+          <div className={`${variant == 'default' && 'text-background bg-foreground'} ${variant == 'blue' && 'text-foreground bg-pblue'}  w-full h-full flex items-center justify-center p-4`}>{children}</div>
         </div>
 
         {/* ASCII Trail Canvas */}

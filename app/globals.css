@@ -4,12 +4,8 @@
 
 :root {
   --foreground: #EADEB6;
-  --muted: #E7E7E9;
   --background: #050A10;
-  --pyellow: #FCC905;
-  --porange: #F86A00;
-  --pred: #FE0127;
-  --pblue: #4D00B5;
+  --pblue: #003CFF;
 }
 
 @font-face {
@@ -25,7 +21,7 @@
 }
 
 a, button, .clickable {
-  cursor: url('/assets/cursor_hand.png')7 0, pointer;
+  cursor: url('/assets/cursor_hand.png')14 0, pointer;
 }
 
 .cursor-move {
@@ -64,4 +60,18 @@ body{
 .thin-scrollbar::-webkit-scrollbar-thumb {
   background: var(--foreground);
   border-radius: 0; /* Makes it squared */
+}
+
+
+/* Page transition */
+.page-transition {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+body {
+  transition-property: opacity, filter;
+  transition-timing-function: ease-in;
+  background: var(--pblue);
+  transition-duration: 200ms;
 }

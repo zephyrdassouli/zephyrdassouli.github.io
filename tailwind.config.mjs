@@ -8,11 +8,7 @@ export default {
       },
       colors: {
         foreground: "var(--foreground)",
-        muted: "var(--muted)",
         background: "var(--background)",
-        pyellow: "var(--pyellow)",
-        porange: "var(--porange)",
-        pred: "var(--pred)",
         pblue: "var(--pblue)",
       },
     },
