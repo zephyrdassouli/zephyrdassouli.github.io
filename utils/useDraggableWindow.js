@@ -14,8 +14,8 @@ export const useDraggableWindow = (width, height, initialTop, initialLeft) => {
     const viewportHeight = window.innerHeight;
 
     setPosition((prevPosition) => ({
-      top: Math.max(0, Math.min(prevPosition.top, viewportHeight - height) - 1),
-      left: Math.max(160, Math.min(prevPosition.left, viewportWidth - width) - 1),
+      top: Math.max(40, Math.min(prevPosition.top, viewportHeight - height) - 1),
+      left: Math.max(0, Math.min(prevPosition.left, viewportWidth - width) - 1),
     }));
   }, [width, height]);
 
@@ -47,8 +47,8 @@ export const useDraggableWindow = (width, height, initialTop, initialLeft) => {
       const newLeft = e.clientX - dragOffset.x;
 
       // Constrain the position within the viewport
-      const constrainedTop = Math.max(0, Math.min(newTop, viewportHeight - height) - 1);
-      const constrainedLeft = Math.max(160, Math.min(newLeft, viewportWidth - width) - 1);
+      const constrainedTop = Math.max(40, Math.min(newTop, viewportHeight - height) - 1);
+      const constrainedLeft = Math.max(0, Math.min(newLeft, viewportWidth - width) - 1);
 
       setPosition({ top: constrainedTop, left: constrainedLeft });
     },

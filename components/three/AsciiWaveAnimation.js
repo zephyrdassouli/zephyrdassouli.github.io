@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { AsciiEffect } from 'three/addons/effects/AsciiEffect.js';
 
-export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, distanceValue = 150, blue = false }) {
+export default function AsciiWaveAnimation({className, cameraPosition, cameraRotation, distanceValue = 150, blue = false }) {
   const containerRef = useRef(null);
   const effectRef = useRef(null);
   const rendererRef = useRef(null);
@@ -146,6 +146,7 @@ export default function AsciiWaveAnimation({ cameraPosition, cameraRotation, dis
 
   return (
     <div
+      className={className}
       ref={containerRef}
       style={{
         width: '100vw',

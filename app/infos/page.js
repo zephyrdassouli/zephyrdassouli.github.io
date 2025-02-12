@@ -5,7 +5,7 @@ import AsciiWaveAnimation from '@/components/three/AsciiWaveAnimation';
 
 export default function Infos() {
   return (
-    <div className="flex flex-row gap-4 items-center w-full">
+    <div className="flex flex-row gap-4 items-center w-full pl-20">
       <div className="px-4 pt-20 h-full overflow-y-auto thin-scrollbar w-[42vw] overflow-x-hidden flex flex-row gap-4">
         <div className="flex flex-col gap-4 text-right w-[10vw]">
           <div className=" text-pblue">Name :</div>
@@ -22,7 +22,7 @@ export default function Infos() {
           <RandomTextReveal className={'text-foreground'} text={'I am a compsci master student at IMT Atlantique. My subject of intrest are cybersecurity and developpment.'} />
         </div>
       </div>
-      <div className="flex flex-col gap-4 h-full w-[42vw] absolute right-[500px]">
+      <div className="w-[30vw] absolute top-0 right-[700px]">
         <AsciiWaveAnimation cameraPosition={[0, 0, 400]} cameraRotation={[0, 0, -90]} distanceValue={0} blue />
       </div>
     </div>
