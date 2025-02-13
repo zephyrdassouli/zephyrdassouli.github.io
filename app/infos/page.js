@@ -10,16 +10,14 @@ export default function Infos() {
         <div className="flex flex-col gap-4 text-right w-[10vw]">
           <div className=" text-pblue">Name :</div>
           <div className=" text-pblue">Age :</div>
-          <div className=" text-pblue">Occupation :</div>
           <div className=" text-pblue">Location :</div>
           <div className=" text-pblue">Detail :</div>
         </div>
         <div className="flex flex-col gap-4 max-w-[30vw]">
           <RandomTextReveal className={'text-foreground'} text={'Zéphyr Dassouli'} />
           <RandomTextReveal className={'text-foreground'} text={'20'} />
-          <RandomTextReveal className={'text-foreground'} text={'Student in Computer Science'} />
           <RandomTextReveal className={'text-foreground'} text={'Toulouse, France'} />
-          <RandomTextReveal className={'text-foreground'} text={'I am a compsci master student at IMT Atlantique. My subject of intrest are cybersecurity and developpment.'} />
+          <RandomTextReveal className={'text-foreground'} text={"I am a master's student in CompSci at IMT Atlantique with a strong interest in cybersecurity and software development"} />
         </div>
       </div>
       <div className="w-[30vw] absolute top-0 right-[700px]">

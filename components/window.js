@@ -38,7 +38,7 @@ export default function Window({ children, title, width = 300, height = 300, ini
           }}
         >
           <div className={`${variant == 'default' && 'bg-background'} ${variant == 'blue' && 'bg-foreground text-pblue'} w-full pt-2 pb-2 pr-1 flex justify-between cursor-move`} {...dragListeners}>
-            <div className="font-black font">{title.toUpperCase()}</div>
+            <div className="font-black">{title.toUpperCase()}</div>
             <button onClick={handleXClick} className="text-2xl relative bottom-1 px-2">
               x
             </button>

@@ -2,6 +2,7 @@
 import Window from '@/components/window';
 import { useState, useEffect } from 'react';
 import { getRandomPosition } from '@/utils/windowPositioning';
+import WindowVideo from '@/components/windowVideo';
 
 export default function Projects() {
   const [pos1, setPos1] = useState(null);
@@ -35,8 +36,12 @@ export default function Projects() {
 
   return (
     <div>
+      <div id="modal-root" />
       <Window width={300} height={300} title={'Error 2'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
-        ERROR! You can not do that
+        <div className="flex flex-col gap-4 items-center">
+          ERROR! You can not do that
+          <WindowVideo button={'Video'} title={'Video_player_mp4'} videoLink={'/videos/test.mp4'} />
+        </div>
       </Window>
       <Window width={400} height={500} title={'Transat!'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
         <div className="flex flex-col gap-4">

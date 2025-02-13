@@ -1,0 +1,25 @@
+.pixel-button {
+    position: relative;
+    border: 1px solid var(--background);
+    box-shadow:
+    1px 0px 0px var(--background),
+    -1px 0px 0px var(--background),
+    0px 1px 0px var(--background),
+    0px -1px 0px var(--background),
+    0 0 8px rgba(0,0,0,0),
+    0 0 15px rgba(0,0,0,0),
+    0 0 25px rgba(0,0,0,0);
+}
+  
+.pixel-border-window{
+    position: relative;
+    border: 1px solid var(--foreground);
+    box-shadow:
+    2px 0px 0px var(--foreground),
+    -2px 0px 0px var(--foreground),
+    0px 2px 0px var(--foreground),
+    0px -2px 0px var(--foreground),
+    0 0 8px rgba(0,0,0,0.4),
+    0 0 15px rgba(0,0,0,0.2),
+    0 0 25px rgba(0,0,0,0.1);
+}
