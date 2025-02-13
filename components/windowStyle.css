@@ -25,13 +25,16 @@
 }
 
 .shrink-fade {
-  animation: shrinkFade 0.2s forwards;
+  animation: shrinkFade 0.3s forwards;
 }
 
 @keyframes shrinkFade {
   0% {
     opacity: 1;
     transform: scale(1);
+  }
+  40%{
+    opacity: 0;
   }
   100% {
     opacity: 0;
