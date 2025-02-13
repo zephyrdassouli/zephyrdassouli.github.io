@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export default function RandomTextReveal({ text, duration = 1000, className }) {
+export default function RandomTextReveal({ text, duration = 2000, className }) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
   const getRandomString = (length) => Array.from({ length }, () => characters[Math.floor(Math.random() * characters.length)]).join('');
 

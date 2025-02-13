@@ -12,15 +12,15 @@ export const TransitionLink = ({ children, href, ...props }) => {
 
   const handleTransition = async (e) => {
     e.preventDefault();
-    const body = document.querySelector('body');
+    const main = document.querySelector('main');
 
-    body?.classList.add('page-transition');
+    main?.classList.add('page-transition');
 
     await sleep(100);
     router.push(href);
     await sleep(100);
 
-    body?.classList.remove('page-transition');
+    main?.classList.remove('page-transition');
   };
 
   return (

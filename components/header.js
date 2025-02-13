@@ -9,7 +9,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <div className="w-screen bg-background border-foreground z-20 top-0 left-0 ">
+    <div className="w-screen z-20 top-0 left-0 ">
       <div className="flex flex-row w-full gap-4">
         {menuItems.map((item, index) => (
           <div key={index} className="flex gap-1 pl-2">
