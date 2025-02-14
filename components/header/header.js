@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import './headerStyle.css';
-import { TransitionLink } from './transitionLink';
+import { TransitionLink } from '../transitionLink';
+import TextHeader from './textHeader';
 
 // Menu items to display
 const menuItems = ['HOME', 'PROJECTS', 'INFOS', 'CONTACT'];
@@ -18,9 +18,9 @@ export default function Header() {
               href={item === 'HOME' ? '/' : `/${item.toLowerCase()}`}
               key={item}
               className={`flex items-center text-left relative text-xl transition-colors duration-[30ms] text-glow  
-              ${pathname === '/' && item === 'HOME' ? 'text-pblue text-glow-selected' : pathname && pathname === '/' + item.toLowerCase() ? 'text-pblue text-glow-selected' : 'text-grad-hover '}`}
+              ${pathname === '/' && item === 'HOME' ? 'text-pblue' : pathname && pathname === '/' + item.toLowerCase() ? 'text-pblue' : ''}`}
             >
-              {item}
+              <TextHeader text={item} duration={1000} className="text-2xl" />
             </TransitionLink>
           </div>
         ))}
