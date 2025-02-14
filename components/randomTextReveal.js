@@ -3,17 +3,24 @@
 import { useState, useEffect } from 'react';
 
 export default function RandomTextReveal({ text, duration = 2000, className }) {
+  // Characters to use for the random text
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+
+  // Function to generate a random string of a given length
   const getRandomString = (length) => Array.from({ length }, () => characters[Math.floor(Math.random() * characters.length)]).join('');
 
+  // State to store the current display text
   const [displayText, setDisplayText] = useState(''.padEnd(text.length, ' '));
+  // State to track if the component has mounted
   const [mounted, setMounted] = useState(false);
 
+  // Set the initial display text on mount and reveal the actual text over time
   useEffect(() => {
     setMounted(true);
     setDisplayText(getRandomString(text.length));
   }, []);
 
+  // Reveal the actual text over time
   useEffect(() => {
     if (!mounted) return;
     let startTime = Date.now();

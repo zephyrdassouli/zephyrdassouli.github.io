@@ -1,0 +1,57 @@
+.preview-disappear{
+    animation: preview-disappear 0.5s forwards;
+}
+
+.pixel-button {
+  position: relative;
+  border: 2px solid var(--background);
+  box-shadow:
+  1px 0px 0px var(--background),
+  -1px 0px 0px var(--background),
+  0px 1px 0px var(--background),
+  0px -1px 0px var(--background),
+  0 0 8px rgba(0,0,0,0),
+  0 0 15px rgba(0,0,0,0),
+  0 0 25px rgba(0,0,0,0);
+}
+  
+@keyframes preview-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  40%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.preview-appear{
+  animation: preview-appear 0.2s forwards;
+}
+
+@keyframes preview-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.preview-pixel-border {
+  border: 3px solid var(--foreground);
+  box-shadow:
+  2px 0px 0px var(--foreground),
+  -2px 0px 0px var(--foreground),
+  0px 2px 0px var(--foreground),
+  0px -2px 0px var(--foreground),
+  0 0 8px rgba(0,0,0,0.2),
+  0 0 15px rgba(0,0,0,0.1),
+  0 0 25px rgba(0,0,0,0.05);
+}

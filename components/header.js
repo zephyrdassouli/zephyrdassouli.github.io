@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import './headerStyle.css';
 import { TransitionLink } from './transitionLink';
 
+// Menu items to display
 const menuItems = ['HOME', 'PROJECTS', 'INFOS', 'CONTACT'];
 
 export default function Header() {

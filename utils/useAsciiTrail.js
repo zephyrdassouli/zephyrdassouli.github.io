@@ -11,8 +11,9 @@ export function useAsciiTrail() {
   const horizontalOffset = -10; // Horizontal offset to shift the trail (adjust this value)
 
   useEffect(() => {
+    // Get the canvas and its context
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas?.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 

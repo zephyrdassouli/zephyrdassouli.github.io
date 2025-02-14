@@ -5,12 +5,16 @@ import './windowStyle.css';
 import { useState, useEffect } from 'react';
 
 export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft, variant = 'default' }) {
+  
+  // Use the draggable window hook to get the position, zIndex, and drag listeners
   const { position, zIndex, dragListeners } = useDraggableWindow(width, height, initialTop, initialLeft);
   const { canvasRef, addTrail } = useAsciiTrail(); // Use the updated ASCII trail hook
 
+  // State to track if the window is visible and fading
   const [isVisible, setIsVisible] = useState(true);
   const [fading, setFading] = useState(false);
 
+  // Handle the window close button
   const handleXClick = () => {
     setFading(true);
     setTimeout(() => {
@@ -38,7 +42,7 @@ export default function Window({ children, title, width = 300, height = 300, ini
           }}
         >
           <div className={`${variant == 'default' && 'bg-background'} ${variant == 'blue' && 'bg-foreground text-pblue'} w-full pt-2 pb-2 pr-1 flex justify-between cursor-move`} {...dragListeners}>
-            <div className="font-black">{title.toUpperCase()}</div>
+            <div className="font-black cursor-move">{title.toUpperCase()}</div>
             <button onClick={handleXClick} className="text-2xl relative bottom-1 px-2">
               x
             </button>

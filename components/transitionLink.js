@@ -11,15 +11,19 @@ export const TransitionLink = ({ children, href, ...props }) => {
   const router = useRouter();
 
   const handleTransition = async (e) => {
+    // Prevent the default behavior of the link
     e.preventDefault();
-    const main = document.querySelector('main');
 
+    // Add the page-transition class to the main element to start transition
+    const main = document.querySelector('main');
     main?.classList.add('page-transition');
 
+    // Wait for the transition to finish
     await sleep(100);
     router.push(href);
     await sleep(100);
 
+    // Remove the page-transition class to end transition
     main?.classList.remove('page-transition');
   };
 
