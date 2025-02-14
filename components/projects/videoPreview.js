@@ -15,7 +15,7 @@ export default function VideoPreview({ handleOpen, button, videoLink }) {
   // Update the hover position on mouse move
   useEffect(() => {
     const updateMousePosition = (e) => {
-      setHoverPosition({ x: e.clientX + 30, y: e.clientY + 30 });
+      setHoverPosition({ x: e.clientX + 25, y: e.clientY + 40 });
     };
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);

@@ -49,8 +49,8 @@ export default function Projects() {
       <Window width={400} height={500} title={'Transat!'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
         <WindowVideo title={'Video_player_mp4'} videoLink={'/videos/test.mp4'}>
           <div className="flex flex-col gap-4 clickable">
-            <div className="font-bold text-lg">App development</div>
-            <div className="text-base">
+            <div className="font-bold text-lg clickable">App development</div>
+            <div className="text-base clickable">
               Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus <br />
               <br />
               Compliance work included analyzing, designing, and updating the app to meet all legal standards and regulations
