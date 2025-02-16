@@ -1,12 +1,16 @@
+'use client';
+import TypewriterEffect from '@/components/contact/TypewriterEffect';
+
 export default function Contact() {
   return (
     <div className="p-16">
       <div className="flex flex-col items-center justify-center h-[60vh] w-full">
-        <div className="flex flex-col gap-3 text-center">
-          <div className=" text-5xl text-foreground">Contact me !</div>
-          <a href="mailto:mail@mail.com" className=" text-pblue text-4xl">
-            mail@mail.com
-          </a>
+        <div className="flex flex-col items-center gap-4">
+          <div className="text-3xl sm:text-5xl text-foreground">Contact me</div>
+          <div className="flex items-center gap-2 w-[345px] sm:w-[460px] relative text-left">
+            <div className=" text-pblue text-2xl sm:text-5xl">{'>'}</div>
+            <TypewriterEffect className={'text-lg sm:text-2xl'} text="zephyr.dassouli@imt-atlantique.net" />
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-2 text-3xl justify-end text-foreground h-[20vh]">
