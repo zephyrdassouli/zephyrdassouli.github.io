@@ -24,6 +24,10 @@ a, button, .clickable {
   cursor: url('/assets/cursor_hand.png')14 0, pointer;
 }
 
+.clickable * {
+  cursor: url('/assets/cursor_hand.png')14 0, pointer;
+}
+
 .cursor-move {
   cursor: url('/assets/cursor_move.png') 11 11, grab;
 }

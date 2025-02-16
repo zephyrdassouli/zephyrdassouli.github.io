@@ -1,11 +1,11 @@
 'use client';
 import { useDraggableWindow } from '@/utils/useDraggableWindow';
 import { useAsciiTrail } from '@/utils/useAsciiTrail'; // Updated hook
+import WindowVideo from './windowVideo';
 import './windowStyle.css';
 import { useState, useEffect } from 'react';
 
-export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft, variant = 'default' }) {
-  
+export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft, variant = 'default', videoLink, videoTitle }) {
   // Use the draggable window hook to get the position, zIndex, and drag listeners
   const { position, zIndex, dragListeners } = useDraggableWindow(width, height, initialTop, initialLeft);
   const { canvasRef, addTrail } = useAsciiTrail(); // Use the updated ASCII trail hook
@@ -31,7 +31,7 @@ export default function Window({ children, title, width = 300, height = 300, ini
     return (
       <>
         <div
-          className={`${variant == 'default' && 'bg-background pixel-border'} ${variant == 'blue' && 'bg-foreground pixel-border-blue'} ${fading && 'shrink-fade'} flex flex-col justify-center items-center p-[8px] pt-1`}
+          className={`${variant == 'default' && 'bg-background pixel-border'} ${variant == 'blue' && 'bg-foreground pixel-border-blue'} ${variant == 'inverted' && 'bg-foreground pixel-border-inverted'} ${fading && 'shrink-fade'} flex flex-col justify-center items-center p-[8px] pt-1`}
           style={{
             position: 'absolute',
             top: `${position.top}px`,
@@ -41,13 +41,18 @@ export default function Window({ children, title, width = 300, height = 300, ini
             zIndex: zIndex,
           }}
         >
-          <div className={`${variant == 'default' && 'bg-background'} ${variant == 'blue' && 'bg-foreground text-pblue'} w-full pt-2 pb-2 pr-1 flex justify-between cursor-move`} {...dragListeners}>
+          <div className={`${variant == 'default' && 'bg-background'} ${variant == 'blue' && 'bg-foreground text-pblue'} ${variant == 'inverted' && 'bg-foreground text-background'} w-full pt-2 pb-2 pr-1 flex justify-between cursor-move`} {...dragListeners}>
             <div className="font-black cursor-move">{title.toUpperCase()}</div>
             <button onClick={handleXClick} className="text-2xl relative bottom-1 px-2">
               x
             </button>
           </div>
-          <div className={`${variant == 'default' && 'text-background bg-foreground'} ${variant == 'blue' && 'text-foreground bg-pblue'}  w-full h-full flex items-center justify-center p-4`}>{children}</div>
+          {videoLink && (
+            <WindowVideo title={videoTitle} videoLink={videoLink}>
+              <div className={`${variant == 'default' && 'text-background bg-foreground'} ${variant == 'blue' && 'text-foreground bg-pblue'} ${variant == 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
+            </WindowVideo>
+          )}
+          {!videoLink && <div className={`${variant == 'default' && 'text-background bg-foreground'} ${variant == 'blue' && 'text-foreground bg-pblue'} ${variant == 'inverted' && 'text-foreground bg-background'}  w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>}
         </div>
 
         {/* ASCII Trail Canvas */}

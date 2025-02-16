@@ -39,27 +39,34 @@ export default function Projects() {
     <div>
       <div id="modal-root" />
       {/* Error 2 Window */}
-      <Window width={300} height={300} title={'Error 2'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
-        <WindowVideo title={'Video_player_mp4'} videoLink={'/videos/test.mp4'}>
-          <div className="clickable flex flex-col gap-4 items-center">ERROR! You can not do that</div>
-        </WindowVideo>
+      <Window width={300} height={300} title={'Error 2'} variant="inverted" videoTitle={'Video_player_mp4'} videoLink={'/videos/test.mp4'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
+        <div className="clickable flex flex-col gap-4 items-center">ERROR! You can not do that</div>
       </Window>
 
       {/* Transat Window */}
-      <Window width={400} height={500} title={'Transat!'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
-        <WindowVideo title={'Video_player_mp4'} videoLink={'/videos/test.mp4'}>
-          <div className="flex flex-col gap-4 clickable">
-            <div className="font-bold text-lg clickable">App development</div>
-            <div className="text-base clickable">
-              Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus <br />
-              <br />
-              Compliance work included analyzing, designing, and updating the app to meet all legal standards and regulations
+      <Window width={400} height={460} title={'Transat'} videoLink={'/videos/test.mp4'} videoTitle={'TRANSAT_PREVIEW.MP4'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
+        <div className="h-full flex flex-col gap-4">
+          <div className=" flex items-center gap-6">
+            <img src="/projects/transat.png" alt="Transat" style={{ imageRendering: 'pixelated' }} className="w-14" />
+            <div>
+              <div className="font-bold text-lg ">Transat / App development</div>
+              <div className="text-sm opacity-75 ">2023 - Current</div>
             </div>
           </div>
-        </WindowVideo>
+
+          <div className="text-base">
+            Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus
+            <br />
+            <br />
+            Compliance work included analyzing, designing, and updating the app to meet all legal standards and regulations
+            <br />
+            <br />
+            <span className="opacity-80">Tools used : React Native, Expo, Supabase, Adobe Illustrator</span>
+          </div>
+        </div>
       </Window>
 
-      {/* Error Window */}
+      {/* Pétanque Shop */}
       <Window width={300} height={300} title={'Error'} initialTop={pos3.initialTop} initialLeft={pos3.initialLeft}>
         ERROR! You can not do that
       </Window>
