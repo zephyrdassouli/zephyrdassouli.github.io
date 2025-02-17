@@ -1,14 +1,16 @@
 'use client';
 import { useDraggableWindow } from '@/utils/useDraggableWindow';
-import { useAsciiTrail } from '@/utils/useAsciiTrail'; // Updated hook
 import WindowVideo from './windowVideo';
 import './windowStyle.css';
-import { useState, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
-export default function Window({ children, title, width = 300, height = 300, initialTop, initialLeft, variant = 'default', videoLink, videoTitle }) {
+export default function Window({ children, className, title, initialTop, initialLeft, variant = 'default', videoLink, videoTitle }) {
+  
+  // Ref to get the window dimensions
+  const windowRef = useRef(null);
+  
   // Use the draggable window hook to get the position, zIndex, and drag listeners
-  const { position, zIndex, dragListeners } = useDraggableWindow(width, height, initialTop, initialLeft);
-  const { canvasRef, addTrail } = useAsciiTrail(); // Use the updated ASCII trail hook
+  const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialTop, initialLeft);
 
   // State to track if the window is visible and fading
   const [isVisible, setIsVisible] = useState(true);
@@ -22,22 +24,16 @@ export default function Window({ children, title, width = 300, height = 300, ini
     }, 500);
   };
 
-  // Track the movement and add trail when the window is dragged
-  useEffect(() => {
-    addTrail(position, width, height); // Pass width and height for the full window trail
-  }, [position, width, height]); // Every time the window position changes, add to trail
-
   if (isVisible) {
     return (
       <>
         <div
-          className={`${variant == 'default' && 'bg-background pixel-border'} ${variant == 'blue' && 'bg-foreground pixel-border-blue'} ${variant == 'inverted' && 'bg-foreground pixel-border-inverted'} ${fading && 'shrink-fade'} flex flex-col justify-center items-center p-[8px] pt-1`}
+        ref={windowRef}
+          className={`${variant == 'default' && 'bg-background pixel-border'} ${variant == 'blue' && 'bg-foreground pixel-border-blue'} ${variant == 'inverted' && 'bg-foreground pixel-border-inverted'} ${fading && 'shrink-fade'} ${className} flex flex-col justify-center items-center p-[8px] pt-1`}
           style={{
             position: 'absolute',
             top: `${position.top}px`,
             left: `${position.left}px`,
-            width: `${width}px`,
-            height: `${height}px`,
             zIndex: zIndex,
           }}
         >
@@ -55,8 +51,6 @@ export default function Window({ children, title, width = 300, height = 300, ini
           {!videoLink && <div className={`${variant == 'default' && 'text-background bg-foreground'} ${variant == 'blue' && 'text-foreground bg-pblue'} ${variant == 'inverted' && 'text-foreground bg-background'}  w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>}
         </div>
 
-        {/* ASCII Trail Canvas */}
-        <canvas ref={canvasRef} style={{ position: 'absolute', top: 0, left: 0, zIndex: zIndex - 1 }} />
       </>
     );
   }

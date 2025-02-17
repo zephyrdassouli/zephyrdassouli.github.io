@@ -2,7 +2,6 @@
 import Window from '@/components/projects/window';
 import { useState, useEffect } from 'react';
 import { getRandomPosition } from '@/utils/windowPositioning';
-import WindowVideo from '@/components/projects/windowVideo';
 
 export default function Projects() {
   // Initial positions for the windows
@@ -38,13 +37,14 @@ export default function Projects() {
   return (
     <div>
       <div id="modal-root" />
+
       {/* Error 2 Window */}
-      <Window width={300} height={300} title={'Error 2'} variant="inverted" videoTitle={'Video_player_mp4'} videoLink={'/videos/test.mp4'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
+      <Window title={'Error 2'} className={'w-60'} variant="inverted" videoTitle={'Video_player_mp4'} videoLink={'/videos/test.mp4'} initialTop={pos1.initialTop} initialLeft={pos1.initialLeft}>
         <div className="clickable flex flex-col gap-4 items-center">ERROR! You can not do that</div>
       </Window>
 
       {/* Transat Window */}
-      <Window width={400} height={460} title={'Transat'} videoLink={'/videos/test.mp4'} videoTitle={'TRANSAT_PREVIEW.MP4'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
+      <Window title={'Transat'} className={' w-[300px] sm:w-[400px]'} videoLink={'/videos/test.mp4'} videoTitle={'TRANSAT_PREVIEW.MP4'} variant="blue" initialTop={pos2.initialTop} initialLeft={pos2.initialLeft}>
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
             <img src="/projects/transat.png" alt="Transat" style={{ imageRendering: 'pixelated' }} className="w-14" />
@@ -53,7 +53,6 @@ export default function Projects() {
               <div className="text-sm opacity-75 ">2023 - Current</div>
             </div>
           </div>
-
           <div className="text-base">
             Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus
             <br />
@@ -67,7 +66,7 @@ export default function Projects() {
       </Window>
 
       {/* Pétanque Shop */}
-      <Window width={300} height={300} title={'Error'} initialTop={pos3.initialTop} initialLeft={pos3.initialLeft}>
+      <Window title={'Error'} className={'w-70 h-52'} initialTop={pos3.initialTop} initialLeft={pos3.initialLeft}>
         ERROR! You can not do that
       </Window>
     </div>
