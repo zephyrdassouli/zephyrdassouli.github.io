@@ -29,21 +29,28 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
 
   // Ensure window stays inside viewport when resized
   const adjustPositionToFitViewport = useCallback(() => {
-    // If dimensions are not set, do nothing
     if (!dimensions.width || !dimensions.height) return;
 
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
     setPosition((prevPosition) => {
-      const newTop = Math.max(40, Math.min(prevPosition.top, viewportHeight - dimensions.height) - 1);
-      const newLeft = Math.max(0, Math.min(prevPosition.left, viewportWidth - dimensions.width) - 1);
+      let newTop = prevPosition.top;
+      let newLeft = prevPosition.left;
 
-      // Only update position if it actually changes
-      if (newTop !== prevPosition.top || newLeft !== prevPosition.left) {
-        return { top: newTop, left: newLeft };
+      // Ensure window stays within bounds
+      if (newTop + dimensions.height > viewportHeight) {
+        newTop = viewportHeight - dimensions.height;
       }
-      return prevPosition;
+      if (newLeft + dimensions.width > viewportWidth) {
+        newLeft = viewportWidth - dimensions.width;
+      }
+
+      // Prevent negative positions
+      newTop = Math.max(40, newTop);
+      newLeft = Math.max(0, newLeft);
+
+      return { top: newTop, left: newLeft };
     });
   }, [dimensions]);
 

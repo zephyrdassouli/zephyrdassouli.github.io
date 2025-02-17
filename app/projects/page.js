@@ -4,13 +4,13 @@ import Window from '@/components/projects/window';
 
 export default function Projects() {
   // Radius for the window positioning
-  const radius = 400;
+  const radius = 200;
   const [centers, setCenters] = useState(null);
 
   useEffect(() => {
     const newCenters = [
       [window.innerWidth / 2 + 400, window.innerHeight / 2 - 100],
-      [window.innerWidth / 2 - 200, window.innerHeight / 2 + 100],
+      [window.innerWidth / 2 - 200, window.innerHeight / 2 - 100],
       [window.innerWidth / 2 + 30, window.innerHeight / 2 - 50],
     ];
     setCenters(newCenters);
@@ -24,7 +24,7 @@ export default function Projects() {
       <div id="modal-root" />
 
       {/* Error 2 Window */}
-      <Window title={'Error 2'} className={'w-60'} variant="inverted" videoTitle={'Video_player_mp4'} videoLink={'/videos/test.mp4'} radius={radius} center={centers[0]}>
+      <Window title={'Error 2'} className={'w-60 h-52'} variant="inverted" videoTitle={'Video_player_mp4'} videoLink={'/videos/test.mp4'} radius={radius} center={centers[0]}>
         <div className="clickable flex flex-col gap-4 items-center">ERROR! You can not do that</div>
       </Window>
 
@@ -51,7 +51,7 @@ export default function Projects() {
       </Window>
 
       {/* Pétanque Shop */}
-      <Window title={'Error'} className={'w-70 h-52'} radius={radius} center={centers[2]}>
+      <Window title={'Error'} className={' w-72 h-52'} radius={radius} center={centers[2]}>
         ERROR! You can not do that
       </Window>
     </div>

@@ -2,8 +2,8 @@
 import { useDraggableWindow } from '@/utils/useDraggableWindow';
 import { getRandomPosition } from '@/utils/windowPositioning';
 import WindowVideo from './windowVideo';
-import './windowStyle.css';
 import { useState, useRef, useEffect } from 'react';
+import './windowStyle.css';
 
 export default function Window({ children, className, title, variant = 'default', videoLink, videoTitle, center, radius }) {
   // Ref to get the window dimensions
@@ -14,14 +14,7 @@ export default function Window({ children, className, title, variant = 'default'
   const [fading, setFading] = useState(false);
 
   // Set initial position using a function to ensure randomness
-  const [initialPosition, setInitialPosition] = useState({ initialTop: center[1], initialLeft: center[0] });
-
-  useEffect(() => {
-    if (windowRef.current && center) {
-      const { width, height } = windowRef.current.getBoundingClientRect();
-      setInitialPosition(getRandomPosition(radius, width, height, center));
-    }
-  }, [center]);
+  const [initialPosition, setInitialPosition] = useState(getRandomPosition(radius, center));
 
   // Ensure we have a valid position before rendering
   const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialPosition.initialTop, initialPosition.initialLeft);
