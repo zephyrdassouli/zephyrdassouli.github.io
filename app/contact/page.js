@@ -1,9 +1,9 @@
 'use client';
-import TypewriterEffect from '@/components/contact/TypewriterEffect';
+import TypewriterEffect from "@/components/contact/typewriterEffect";
 
 export default function Contact() {
   return (
-    <div className="p-16">
+    <div className="sm:p-16 p-8">
       <div className="flex flex-col items-center justify-center h-[60vh] w-full">
         <div className="flex flex-col items-center gap-4">
           <div className="text-3xl sm:text-5xl text-foreground">Contact me</div>

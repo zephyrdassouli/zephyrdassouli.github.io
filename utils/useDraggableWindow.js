@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-let globalZIndex = 10; // Global z-index value to keep track of window stacking order
+let globalZIndex = 10;
 
 export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
   // Get dimensions of the window
@@ -58,7 +58,7 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
   useEffect(() => {
     const handleResize = () => adjustPositionToFitViewport();
     window.addEventListener('resize', handleResize);
-    adjustPositionToFitViewport(); // Initial adjustment
+    adjustPositionToFitViewport();
     return () => window.removeEventListener('resize', handleResize);
   }, [adjustPositionToFitViewport]);
 
@@ -66,9 +66,12 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
     (e) => {
       e.preventDefault();
       setIsDragging(true);
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+      const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+
       setDragOffset({
-        x: e.clientX - position.left,
-        y: e.clientY - position.top,
+        x: clientX - position.left,
+        y: clientY - position.top,
       });
 
       // Bring window to front by increasing zIndex
@@ -82,11 +85,14 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
     (e) => {
       if (!isDragging) return;
 
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+      const clientY = e.clientY ?? e.touches?.[0]?.clientY;
+
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
-      const newTop = e.clientY - dragOffset.y;
-      const newLeft = e.clientX - dragOffset.x;
+      const newTop = clientY - dragOffset.y;
+      const newLeft = clientX - dragOffset.x;
 
       const constrainedTop = Math.max(40, Math.min(newTop, viewportHeight - dimensions.height) - 1);
       const constrainedLeft = Math.max(0, Math.min(newLeft, viewportWidth - dimensions.width) - 1);
@@ -104,20 +110,29 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
     if (isDragging) {
       window.addEventListener('mousemove', onDrag);
       window.addEventListener('mouseup', stopDrag);
+
+      window.addEventListener('touchmove', onDrag);
+      window.addEventListener('touchend', stopDrag);
     } else {
       window.removeEventListener('mousemove', onDrag);
       window.removeEventListener('mouseup', stopDrag);
+
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', stopDrag);
     }
 
     return () => {
       window.removeEventListener('mousemove', onDrag);
       window.removeEventListener('mouseup', stopDrag);
+
+      window.removeEventListener('touchmove', onDrag);
+      window.removeEventListener('touchend', stopDrag);
     };
   }, [isDragging, onDrag, stopDrag]);
 
   return {
     position,
     zIndex,
-    dragListeners: { onMouseDown: startDrag },
+    dragListeners: { onMouseDown: startDrag, onTouchStart: startDrag },
   };
 };
