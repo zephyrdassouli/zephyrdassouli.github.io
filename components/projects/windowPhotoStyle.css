@@ -1,0 +1,72 @@
+.pixel-border-window{
+  position: relative;
+  border: 1px solid var(--foreground);
+  box-shadow:
+  2px 0px 0px var(--foreground),
+  -2px 0px 0px var(--foreground),
+  0px 2px 0px var(--foreground),
+  0px -2px 0px var(--foreground),
+  0 0 8px rgba(0,0,0,0.4),
+  0 0 15px rgba(0,0,0,0.2),
+  0 0 25px rgba(0,0,0,0.1);
+}
+
+.window-appear {
+  animation: window-appear 0.3s forwards;
+}
+  
+@keyframes window-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.window-disappear {
+  animation: window-disappear 0.5s forwards;
+}
+  
+@keyframes window-disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  40%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.container-appear:not(.modal-window) {
+  animation: container-appear 0.5s forwards;
+}
+
+@keyframes container-appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.container-disappear:not(.modal-window) {
+  animation: container-disappear 0.5s forwards;
+}
+  
+@keyframes container-disappear {
+  0% {
+    opacity: 1;
+  }
+  40%{
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

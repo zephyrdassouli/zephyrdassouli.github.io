@@ -92,7 +92,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -112,7 +112,6 @@ main {
   opacity: 0.1;
   animation: animateGrain 8s steps(10) infinite;
   pointer-events: none;
-  
 }
 
 .tv-grain::before {

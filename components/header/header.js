@@ -20,7 +20,7 @@ export default function Header() {
               className={`flex items-center text-left relative text-xl transition-colors duration-[30ms] text-glow  
               ${pathname === '/' && item === 'HOME' ? 'text-pblue' : pathname && pathname === '/' + item.toLowerCase() ? 'text-pblue' : ''}`}
             >
-              <TextHeader text={item} duration={1000} className="text-2xl" />
+              <TextHeader text={item} duration={1000} className="md:text-2xl" />
             </TransitionLink>
           </div>
         ))}

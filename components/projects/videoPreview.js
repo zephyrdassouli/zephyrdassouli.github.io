@@ -49,7 +49,7 @@ export default function VideoPreview({ handleOpen, button, videoLink }) {
       {/* Preview video */}
       {isHovered && (
         <video
-          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border fixed w-[120px] h-auto rounded-sm shadow-lg pointer-events-none video-overlay`}
+          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border fixed w-[120px] h-auto rounded-sm shadow-lg pointer-events-none`}
           style={{
             top: `${hoverPosition.y}px`,
             left: `${hoverPosition.x}px`,
