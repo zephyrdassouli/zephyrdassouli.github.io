@@ -56,11 +56,11 @@ export default function Window({ children, className, title, variant = 'default'
 
       {/* Video or Photo or Content */}
       {videoLink ? (
-        <WindowVideo title={assetTitle} videoLink={videoLink}>
+        <WindowVideo title={assetTitle} videoLink={videoLink} windowPosition={position}>
           <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
         </WindowVideo>
       ) : photoLink ? (
-        <WindowPhoto title={assetTitle} photoLink={photoLink}>
+        <WindowPhoto title={assetTitle} photoLink={photoLink} windowPosition={position}>
           <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
         </WindowPhoto>
       ) : (

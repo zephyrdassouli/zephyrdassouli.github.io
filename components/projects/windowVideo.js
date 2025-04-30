@@ -29,7 +29,7 @@ const Modal = ({ windowClassName, containerClassName, onClose, children, title }
   return ReactDOM.createPortal(modalContent, document.getElementById('modal-root'));
 };
 
-export default function WindowVideo({ children, title, videoLink }) {
+export default function WindowVideo({ children, title, videoLink, windowPosition }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Modal fade in/out control
@@ -56,7 +56,7 @@ export default function WindowVideo({ children, title, videoLink }) {
 
   return (
     <>
-      <VideoPreview handleOpen={handleOpen} button={children} videoLink={videoLink} />
+      <VideoPreview handleOpen={handleOpen} button={children} videoLink={videoLink} windowPosition={windowPosition} />
       {isOpen && (
         <Modal containerClassName={(fadingIn && 'container-appear') || (fadingOut && 'container-disappear')} windowClassName={(fadingIn && 'window-appear') || (fadingOut && 'window-disappear')} onClose={handleClose} title={title}>
           <video className="max-w-[80vw] max-h-[80vh]" autoPlay loop muted>

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import './photoPreviewStyle.css';
 
-export default function PhotoPreview({ handleOpen, button, photoLink }) {
+export default function PhotoPreview({ handleOpen, button, photoLink, windowPosition }) {
   // Hover position for the photo (on the cursor)
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
   // Tracks if the cursor is hovering the button
@@ -16,7 +16,7 @@ export default function PhotoPreview({ handleOpen, button, photoLink }) {
   // Update the hover position on mouse move
   useEffect(() => {
     const updateMousePosition = (e) => {
-      setHoverPosition({ x: e.clientX + 25, y: e.clientY + 40 });
+      setHoverPosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
@@ -50,10 +50,11 @@ export default function PhotoPreview({ handleOpen, button, photoLink }) {
       {/* Preview photo */}
       {isHovered && (
         <Image
-          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border fixed w-[120px] h-auto rounded-sm shadow-lg pointer-events-none`}
+          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border w-[120px] h-auto rounded-sm shadow-lg pointer-events-none`}
           style={{
-            top: `${hoverPosition.y}px`,
-            left: `${hoverPosition.x}px`,
+            top: `${hoverPosition.y - windowPosition.top + 40}px`,
+            left: `${hoverPosition.x - windowPosition.left + 25}px`,
+            position: 'absolute',
             zIndex: 1000,
           }}
           src={photoLink}

@@ -30,7 +30,7 @@ const Modal = ({ windowClassName, containerClassName, onClose, children, title }
   return ReactDOM.createPortal(modalContent, document.getElementById('modal-root'));
 };
 
-export default function WindowPhoto({ children, title, photoLink }) {
+export default function WindowPhoto({ children, title, photoLink, windowPosition }) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Modal fade in/out control
@@ -57,7 +57,7 @@ export default function WindowPhoto({ children, title, photoLink }) {
 
   return (
     <>
-      <PhotoPreview handleOpen={handleOpen} button={children} photoLink={photoLink} />
+      <PhotoPreview handleOpen={handleOpen} button={children} photoLink={photoLink} windowPosition={windowPosition} />
       {isOpen && (
         <Modal containerClassName={(fadingIn && 'container-appear') || (fadingOut && 'container-disappear')} windowClassName={(fadingIn && 'window-appear') || (fadingOut && 'window-disappear')} onClose={handleClose} title={title}>
           <Image className="max-w-[80vw] w-fit h-fit max-h-[80vh] object-contain" width={1000} height={0} src={photoLink} alt={title} />

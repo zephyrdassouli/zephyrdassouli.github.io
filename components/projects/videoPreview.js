@@ -2,8 +2,9 @@
 import { useState, useEffect } from 'react';
 import './videoPreviewStyle.css';
 
-export default function VideoPreview({ handleOpen, button, videoLink }) {
+export default function VideoPreview({ handleOpen, button, videoLink, windowPosition }) {
   // Hover position for the video (on the cursor)
+  console.log('Window', windowPosition);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
   // Tracks if the cursor is hovering the button
   const [isHovered, setIsHovered] = useState(false);
@@ -15,7 +16,7 @@ export default function VideoPreview({ handleOpen, button, videoLink }) {
   // Update the hover position on mouse move
   useEffect(() => {
     const updateMousePosition = (e) => {
-      setHoverPosition({ x: e.clientX + 25, y: e.clientY + 40 });
+      setHoverPosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', updateMousePosition);
     return () => window.removeEventListener('mousemove', updateMousePosition);
@@ -49,10 +50,11 @@ export default function VideoPreview({ handleOpen, button, videoLink }) {
       {/* Preview video */}
       {isHovered && (
         <video
-          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border fixed w-[120px] h-auto rounded-sm shadow-lg pointer-events-none`}
+          className={`${fadingOut && 'preview-disappear'} ${fadingIn && 'preview-appear'} preview-pixel-border w-[120px] h-auto rounded-sm shadow-lg pointer-events-none`}
           style={{
-            top: `${hoverPosition.y}px`,
-            left: `${hoverPosition.x}px`,
+            top: `${hoverPosition.y - windowPosition.top + 40}px`,
+            left: `${hoverPosition.x - windowPosition.left + 25}px`,
+            position: 'absolute',
             zIndex: 1000,
           }}
           autoPlay
