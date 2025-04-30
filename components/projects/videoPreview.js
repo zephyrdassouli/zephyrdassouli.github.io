@@ -4,7 +4,6 @@ import './videoPreviewStyle.css';
 
 export default function VideoPreview({ handleOpen, button, videoLink, windowPosition }) {
   // Hover position for the video (on the cursor)
-  console.log('Window', windowPosition);
   const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
   // Tracks if the cursor is hovering the button
   const [isHovered, setIsHovered] = useState(false);

@@ -16,10 +16,10 @@ export default function Projects() {
       <div id="modal-root" />
 
       {/* Transat Window */}
-      <Window title={'Transat'} className={' w-[300px] sm:w-[400px] grow-fade'} videoLink={'/videos/video_transat.mp4'} assetTitle={'TRANSAT_PREVIEW.MP4'} variant="blue">
+      <Window title={'Transat'} className={' w-[300px] sm:w-[400px] grow-fade'} videoLink={`${process.env.NEXT_PUBLIC_BASE}/videos/video_transat.mp4`} assetTitle={'TRANSAT_PREVIEW.MP4'} variant="blue">
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
-            <img src="/projects/transat.png" alt="Transat" style={{ imageRendering: 'pixelated' }} className="w-14" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/transat.png`} alt="Transat" style={{ imageRendering: 'pixelated' }} className="w-14" />
             <div>
               <div className="font-bold text-lg ">Transat / App development</div>
               <div className="text-sm opacity-75 ">2023 - 2025</div>
@@ -54,10 +54,10 @@ export default function Projects() {
       </Window>
 
       {/* Pétanque Shop */}
-      <Window title={'PetanqueShop'} className={'w-[300px] sm:w-[400px] grow-fade'} photoLink={'/photos/petanque.png'} assetTitle={'PETANQUESHOP_PREVIEW.PNG'}>
+      <Window title={'PetanqueShop'} className={'w-[300px] sm:w-[400px] grow-fade'} photoLink={`${process.env.NEXT_PUBLIC_BASE}/photos/petanque.png`} assetTitle={'PETANQUESHOP_PREVIEW.PNG'}>
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
-            <img src="/projects/petanque.png" alt="PetanqueShop" style={{ imageRendering: 'pixelated' }} className="w-14" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/petanque.png`} alt="PetanqueShop" style={{ imageRendering: 'pixelated' }} className="w-14" />
             <div>
               <div className="font-bold text-lg ">PetanqueShop / AI</div>
               <div className="text-sm opacity-75 ">2024</div>
@@ -79,7 +79,7 @@ export default function Projects() {
       <Window title={'UvA'} className={' w-[300px] sm:w-[400px] grow-fade'} variant="inverted">
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
-            <img src="/projects/uva.png" alt="uvA" style={{ imageRendering: 'pixelated' }} className="w-14" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/uva.png`} alt="uvA" style={{ imageRendering: 'pixelated' }} className="w-14" />
             <div>
               <div className="font-bold text-lg ">
                 University of Amsterdam <br /> Research
