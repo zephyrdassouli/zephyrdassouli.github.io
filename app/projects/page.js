@@ -3,28 +3,20 @@ import { useState, useEffect } from 'react';
 import Window from '@/components/projects/window';
 
 export default function Projects() {
-  // Radius for the window positioning
-  const radius = 200;
-  const [centers, setCenters] = useState(null);
+  const [def, setDef] = useState(null);
 
   useEffect(() => {
-    const newCenters = [
-      [window.innerWidth / 2 + window.innerWidth/4, window.innerHeight / 2 - window.innerHeight / 4],
-      [window.innerWidth / 2 - window.innerWidth/4, window.innerHeight / 2 - window.innerHeight / 4],
-      [window.innerWidth / 2 - window.innerWidth/10, window.innerHeight / 2 - window.innerHeight / 10],
-    ];
-    setCenters(newCenters);
+    setDef('Def !');
   }, []);
 
-  // Ensure centers are initialized before rendering
-  if (!centers) return null;
+  if (!def) return null;
 
   return (
     <div>
       <div id="modal-root" />
 
       {/* Transat Window */}
-      <Window title={'Transat'} className={' w-[300px] sm:w-[400px]'} videoLink={'/videos/video_transat.mp4'} assetTitle={'TRANSAT_PREVIEW.MP4'} variant="blue" radius={radius} center={centers[1]}>
+      <Window title={'Transat'} className={' w-[300px] sm:w-[400px] grow-fade'} videoLink={'/videos/video_transat.mp4'} assetTitle={'TRANSAT_PREVIEW.MP4'} variant="blue">
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
             <img src="/projects/transat.png" alt="Transat" style={{ imageRendering: 'pixelated' }} className="w-14" />
@@ -45,8 +37,8 @@ export default function Projects() {
         </div>
       </Window>
 
-            {/* Portfolio Window */}
-            <Window title={'This portfolio'} className={'w-[300px] sm:w-[400px]'} radius={radius} center={centers[2]}>
+      {/* Portfolio Window */}
+      <Window title={'This portfolio'} className={'w-[300px] sm:w-[400px] grow-fade'}>
         <div className="h-full flex flex-col gap-4">
           <div>
             <div className="font-bold text-lg ">Portfolio / Web development</div>
@@ -62,7 +54,7 @@ export default function Projects() {
       </Window>
 
       {/* Pétanque Shop */}
-      <Window title={'PetanqueShop'} className={'w-[300px] sm:w-[400px]'} photoLink={'/photos/petanque.png'} assetTitle={'PETANQUESHOP_PREVIEW.PNG'} radius={radius} center={centers[2]}>
+      <Window title={'PetanqueShop'} className={'w-[300px] sm:w-[400px] grow-fade'} photoLink={'/photos/petanque.png'} assetTitle={'PETANQUESHOP_PREVIEW.PNG'}>
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
             <img src="/projects/petanque.png" alt="PetanqueShop" style={{ imageRendering: 'pixelated' }} className="w-14" />
@@ -84,7 +76,7 @@ export default function Projects() {
       </Window>
 
       {/* Research project at UvA */}
-      <Window title={'UvA'} className={' w-[300px] sm:w-[400px]'} variant="inverted" radius={radius} center={centers[0]}>
+      <Window title={'UvA'} className={' w-[300px] sm:w-[400px] grow-fade'} variant="inverted">
         <div className="h-full flex flex-col gap-4">
           <div className=" flex items-center gap-6">
             <img src="/projects/uva.png" alt="uvA" style={{ imageRendering: 'pixelated' }} className="w-14" />

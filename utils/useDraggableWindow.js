@@ -21,6 +21,11 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
 
   // Track window position
   const [position, setPosition] = useState({ top: initialTop, left: initialLeft });
+
+  useEffect(() => {
+    setPosition({ top: initialTop, left: initialLeft });
+  }, [initialTop, initialLeft]);
+
   // Track dragging state
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -94,8 +99,8 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
       const newTop = clientY - dragOffset.y;
       const newLeft = clientX - dragOffset.x;
 
-      const constrainedTop = Math.max(40, Math.min(newTop, viewportHeight - dimensions.height) - 1);
-      const constrainedLeft = Math.max(0, Math.min(newLeft, viewportWidth - dimensions.width) - 1);
+      const constrainedTop = Math.max(45, Math.min(newTop, viewportHeight - dimensions.height - 5));
+      const constrainedLeft = Math.max(5, Math.min(newLeft, viewportWidth - dimensions.width - 5));
 
       setPosition({ top: constrainedTop, left: constrainedLeft });
     },

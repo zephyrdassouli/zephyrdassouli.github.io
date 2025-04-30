@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import './windowStyle.css';
 import WindowPhoto from './windowPhoto';
 
-export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, assetTitle, center, radius }) {
+export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, assetTitle }) {
   // Ref to get the window dimensions
   const windowRef = useRef(null);
 
@@ -15,7 +15,12 @@ export default function Window({ children, className, title, variant = 'default'
   const [fading, setFading] = useState(false);
 
   // Set initial position using a function to ensure randomness
-  const [initialPosition, setInitialPosition] = useState(getRandomPosition(radius, center));
+  const [initialPosition, setInitialPosition] = useState({ initialTop: 0, initialLeft: 0 });
+
+  useEffect(() => {
+    // Update the initial position when the component mounts or when the center changes
+    getRandomPosition(windowRef, setInitialPosition);
+  }, [windowRef]);
 
   // Ensure we have a valid position before rendering
   const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialPosition.initialTop, initialPosition.initialLeft);
