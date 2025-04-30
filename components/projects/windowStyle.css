@@ -39,7 +39,7 @@
 }
 
 .shrink-fade {
-  animation: shrinkFade 0.3s forwards;
+  animation: shrinkFade 0.5s forwards;
 }
 
 @keyframes shrinkFade {
