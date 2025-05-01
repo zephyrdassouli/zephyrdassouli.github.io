@@ -6,7 +6,9 @@ export default function Projects() {
   const [def, setDef] = useState(null);
 
   useEffect(() => {
-    setDef('Def !');
+    if (typeof window !== 'undefined') {
+      setDef('Def !');
+    }
   }, []);
 
   if (!def) return null;

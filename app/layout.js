@@ -3,8 +3,8 @@ import './globals.css';
 import Header from '@/components/header/header';
 
 export const metadata = {
-  title: 'Portfolio',
-  description: '...',
+  title: 'Zephyr Dassouli',
+  description: '',
 };
 
 export const viewport = {
