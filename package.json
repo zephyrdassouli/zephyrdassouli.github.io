@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zephyr-dassouli.github.io/portfolio",
+  "homepage": "https://zephyr-dassouli.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -10,26 +10,26 @@
 
 @font-face {
   font-family: "Acer_VGA";
-  src: url("/portfolio/fonts/Unifont.ttf") format("woff2");
+  src: url("/fonts/Unifont.ttf") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
 /* Custom cursors */
 * {
-  cursor: url('/portfolio/assets/cursor_arrow.png') 0 0, auto;
+  cursor: url('/assets/cursor_arrow.png') 0 0, auto;
 }
 
 a, button, .clickable {
-  cursor: url('/portfolio/assets/cursor_hand.png')14 0, pointer;
+  cursor: url('/assets/cursor_hand.png')14 0, pointer;
 }
 
 .clickable * {
-  cursor: url('/portfolio/assets/cursor_hand.png')14 0, pointer;
+  cursor: url('/assets/cursor_hand.png')14 0, pointer;
 }
 
 .cursor-move {
-  cursor: url('/portfolio/assets/cursor_move.png') 11 11, grab;
+  cursor: url('/assets/cursor_move.png') 11 11, grab;
 }
 
 body{
