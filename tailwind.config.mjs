@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ["Acer_VGA", "sans-serif"],
+        custom: ["Unifont", "sans-serif"],
       },
       colors: {
         foreground: "var(--foreground)",

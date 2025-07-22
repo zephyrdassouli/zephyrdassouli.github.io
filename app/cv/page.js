@@ -251,7 +251,7 @@ export default function CV() {
                         pointerEvents: 'none'
                       }}
                     >
-                      <div className="cv-pixel-border-blue bg-background p-4 md:p-6 w-full">
+                      <div className="pixel-border-blue bg-background p-4 md:p-6 w-full">
                         <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3 gap-2">
                           <div className="min-w-0 flex-1">
                             <h3 className="text-lg md:text-xl font-bold text-foreground truncate">{experience.title}</h3>

@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "Acer_VGA";
+  font-family: "Unifont";
   src: url("/fonts/Unifont.ttf") format("woff2");
   font-weight: normal;
   font-style: normal;
@@ -170,8 +170,7 @@ main {
   display: none;
 }
 
-/* CV pixel borders */
-.cv-pixel-border-blue {
+.pixel-border-blue {
   position: relative;
   border: 1px solid var(--pblue);
   box-shadow:
