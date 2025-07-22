@@ -22,8 +22,8 @@ export default function Infos() {
         <div>
           <div className="text-center text-background bg-pblue">[DETAILS]</div>
           <div className="border md:text-base flex flex-col gap-4 p-3 md:p-6 border-pblue overflow-hidden">
-            <RandomTextReveal className={'text-foreground'} text={"I am a master's student in CompSci at IMT Atlantique with a strong interest in cybersecurity and software development"} />
-            <RandomTextReveal className={'text-foreground '} text={'Currently, I am doing a research internship at the University of Amsterdam in the Multiscale Networked Systems group. My research focuses on blockchain integration to secure AI training workflows'} />
+            <RandomTextReveal className={'text-foreground'} text={"I am a master's student in CompSci at IMT Atlantique with a strong interest in cybersecurity"} />
+            <RandomTextReveal className={'text-foreground '} text={'Currently, I am doing research at the University of Amsterdam in the Multiscale Networked Systems group. My research focuses on blockchain integration to secure AI training workflows'} />
           </div>
         </div>
       </div>

@@ -31,9 +31,6 @@ export default function Projects() {
             Needs analysis, design, and development in React Native of an application integrating all services and important information on IMT Atlantique campus
             <br />
             <br />
-            Compliance work included analyzing, designing, and updating the app to meet all legal standards and regulations
-            <br />
-            <br />
             <span className="opacity-80">Tools used : React Native, Expo, Supabase, Adobe Illustrator</span>
           </div>
         </div>

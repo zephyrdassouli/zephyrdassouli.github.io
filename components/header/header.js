@@ -4,7 +4,7 @@ import { TransitionLink } from '../transitionLink';
 import TextHeader from './textHeader';
 
 // Menu items to display
-const menuItems = ['HOME', 'PROJECTS', 'CV', 'INFOS', 'CONTACT'];
+const menuItems = ['HOME', 'CV', 'PROJECTS', 'INFOS', 'CONTACT'];
 
 export default function Header() {
   const pathname = usePathname();

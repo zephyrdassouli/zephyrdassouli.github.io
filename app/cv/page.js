@@ -17,46 +17,45 @@ export default function CV() {
       id: 1,
       title: "Research Intern",
       company: "University of Amsterdam",
-      period: "2024 - Present",
+      period: "Apr 2025 - Jul 2025",
       location: "Amsterdam, Netherlands",
-      description: "Research internship in the Multiscale Networked Systems group focusing on blockchain integration to secure AI training workflows. Working on distributed systems and cryptographic protocols.",
-      skills: ["Blockchain", "AI/ML", "Distributed Systems", "Python", "Research"]
+      description: "Research in the Multiscale Networked Systems group focusing on blockchain integration to secure AI training workflows",
+      skills: ["Blockchain", "AI/ML", "Cybersecurity"]
     },
     {
       id: 2,
-      title: "Mobile App Developer",
-      company: "IMT Atlantique",
-      period: "2023 - 2025",
-      location: "Brest, France",
-      description: "Lead developer for Transat, a React Native application integrating all campus services and information. Responsible for needs analysis, design, development, and legal compliance work.",
-      skills: ["React Native", "Expo", "Supabase", "Mobile Development", "UI/UX"]
+      title: "Engineering Intern",
+      company: "MecaOctet",
+      period: "Jun 2024 - Jul 2024",
+      location: "Toulouse, France",
+      description: "Design and implementation of an IoT solution to update an outdated product",
+      skills: ["Linux", "IoT", "Modbus", "Python"]
     },
     {
       id: 3,
-      title: "CompSci Master Student",
+      title: "Master Student",
       company: "IMT Atlantique",
-      period: "2022 - 2025",
-      location: "Brest, France",
-      description: "Master's degree in Computer Science with specialization in cybersecurity and software development. Strong focus on distributed systems, security protocols, and software engineering.",
-      skills: ["Cybersecurity", "Software Engineering", "Algorithms", "Networks", "Security"]
+      period: "2023 - Current",
+      location: "Nantes, France",
+      description: "Master's degree in Computer Science with specialization in cybersecurity",
+      skills: ["Cybersecurity", "Software Engineering", "Networks", "Maths", "Physics"]
     },
-    {
+      {
       id: 4,
-      title: "Web Developer",
-      company: "Freelance",
-      period: "2021 - 2022",
+      title: "Preparatory Class Student",
+      company: "Lycée Déodat de Séverac",
+      period: "2021 - 2023",
       location: "Toulouse, France",
-      description: "Freelance web development projects including portfolio websites, small business applications, and custom web solutions using modern web technologies.",
-      skills: ["JavaScript", "React", "Node.js", "Web Development", "Frontend"]
-    }
+      description: "Preparatory class focusing on mathematics and physics. \n PCSI-PSI*",
+      skills: ["Mathematics", "Physics", "Engineering", "Computer Science"]
+    },
   ];
 
-  const itemHeight = 180; // Increased from 120 for more spacing
+  const itemHeight = 180;
   const containerHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 400;
   const thumbHeight = 64; // Fixed thumb height in pixels
   const trackHeight = containerHeight - thumbHeight - 4; // Available track space for thumb movement
 
-  // Simplified: directly map thumb position to experience index
   const getThumbPositionFromIndex = (index) => {
     if (experiences.length <= 1) return 2;
     return 2 + (index / (experiences.length - 1)) * trackHeight;
@@ -67,16 +66,6 @@ export default function CV() {
     const normalizedPos = Math.max(0, Math.min(trackHeight, thumbPos - 2));
     return Math.round((normalizedPos / trackHeight) * (experiences.length - 1));
   };
-
-  // Simplified scroll handling - no more complex scroll calculations
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    // Set initial scroll to center the first item
-    const centerOffset = containerHeight / 2 - itemHeight / 2;
-    container.scrollTop = currentIndex * itemHeight - centerOffset;
-  }, [currentIndex, containerHeight, itemHeight]);
 
   // Initialize to first experience
   useEffect(() => {
@@ -191,66 +180,71 @@ export default function CV() {
           {/* Scroll container */}
           <div 
             ref={scrollContainerRef}
-            className="h-[350px] md:h-[400px] overflow-hidden p-2 relative flex flex-col justify-center"
+            className="h-[350px] md:h-[400px] relative overflow-y-hidden overflow-visible  "
           >
-            <div className="relative h-full flex flex-col justify-center">
-              {experiences.map((experience, index) => {
-                const distance = Math.abs(index - currentIndex);
-                const blur = distance > 0 ? `blur(${Math.min(distance * 2, 6)}px)` : 'none';
-                const opacity = distance === 0 ? 1 : Math.max(0.2, 1 - distance * 0.4);
-                const scale = distance === 0 ? 1 : Math.max(0.7, 1 - distance * 0.15);
-                
-                // Calculate vertical offset for wheel effect
-                const offsetMultiplier = (index - currentIndex) * 1.5; 
-                const translateY = offsetMultiplier * 140;
+            {/* Center point reference */}
+            <div className="absolute inset-0 flex items-center justify-center p-2">
+              <div className="relative w-full">
+                {experiences.map((experience, index) => {
+                  const distance = Math.abs(index - currentIndex);
+                  const blur = distance > 0 ? `blur(${Math.min(distance * 2, 6)}px)` : 'none';
+                  const opacity = distance === 0 ? 1 : Math.max(0.2, 1 - distance * 0.4);
+                  const scale = distance === 0 ? 1 : Math.max(0.7, 1 - distance * 0.15);
+                  
+                  // Always center the selected item - others offset from it
+                  const offsetFromCenter = (index - currentIndex);
+                  const translateY = offsetFromCenter * 220; // Spacing between items
 
-                return (
-                  <div
-                    key={experience.id}
-                    className="absolute inset-x-0 transition-all duration-700 ease-out"
-                    style={{
-                      filter: blur,
-                      opacity: opacity,
-                      transform: `scale(${scale}) translateY(${translateY}px)`,
-                      height: `${itemHeight}px`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      zIndex: distance === 0 ? 10 : Math.max(0, 10 - distance),
-                      pointerEvents: 'none'
-                    }}
-                  >
-                    <div className="cv-pixel-border-blue bg-background p-4 md:p-6">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3 gap-2">
-                        <div className="min-w-0 flex-1">
-                          <h3 className="text-lg md:text-xl font-bold text-foreground truncate">{experience.title}</h3>
-                          <p className="text-pblue text-sm md:text-base truncate">{experience.company}</p>
+                  return (
+                    <div
+                      key={experience.id}
+                      className="absolute inset-x-0 transition-all duration-700 ease-out"
+                      style={{
+                        filter: blur,
+                        opacity: opacity,
+                        transform: `scale(${scale}) translateY(${translateY}px)`,
+                        height: `${itemHeight}px`,
+                        top: '50%',
+                        marginTop: `-${itemHeight / 2}px`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        zIndex: distance === 0 ? 10 : Math.max(0, 10 - distance),
+                        pointerEvents: 'none'
+                      }}
+                    >
+                      <div className="cv-pixel-border-blue bg-background p-4 md:p-6 w-full">
+                        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3 gap-2">
+                          <div className="min-w-0 flex-1">
+                            <h3 className="text-lg md:text-xl font-bold text-foreground truncate">{experience.title}</h3>
+                            <p className="text-pblue text-sm md:text-base truncate">{experience.company}</p>
+                          </div>
+                          <div className="text-left md:text-right text-xs md:text-sm opacity-75 shrink-0">
+                            <p className="truncate">{experience.period}</p>
+                            <p className="truncate">{experience.location}</p>
+                          </div>
                         </div>
-                        <div className="text-left md:text-right text-xs md:text-sm opacity-75 shrink-0"> {/* Added shrink-0 */}
-                          <p className="truncate">{experience.period}</p>
-                          <p className="truncate">{experience.location}</p>
+                        <p className="text-xs md:text-sm text-foreground opacity-90 mb-3 line-clamp-3">{experience.description}</p>
+                        <div className="flex flex-wrap gap-1 md:gap-2">
+                          {experience.skills.slice(0, 3).map((skill, i) => (
+                            <span key={i} className="text-xs bg-pblue text-background px-2 py-1 truncate">
+                              {skill}
+                            </span>
+                          ))}
+                          {experience.skills.length > 3 && (
+                            <span className="text-xs opacity-75">+{experience.skills.length - 3} more</span>
+                          )}
                         </div>
-                      </div>
-                      <p className="text-xs md:text-sm text-foreground opacity-90 mb-3 line-clamp-3">{experience.description}</p>
-                      <div className="flex flex-wrap gap-1 md:gap-2">
-                        {experience.skills.slice(0, 3).map((skill, i) => (
-                          <span key={i} className="text-xs bg-pblue text-background px-2 py-1 truncate">
-                            {skill}
-                          </span>
-                        ))}
-                        {experience.skills.length > 3 && (
-                          <span className="text-xs opacity-75">+{experience.skills.length - 3} more</span>
-                        )}
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
           {/* Custom scrollbar thumb */}
           <div className="absolute right-[-40px] md:right-[-50px] top-0 w-6 md:w-8 h-full flex flex-col justify-center">
-            <div className="relative w-full h-[350px] md:h-[400px] bg-background border border-pblue">
+            <div className="relative w-full h-[350px] md:h-[400px] bg-background border border-pblue ">
               {/* Scroll track */}
               <div className="absolute inset-1 bg-background"></div>
               
@@ -258,7 +252,7 @@ export default function CV() {
               {experiences.map((_, index) => (
                 <div
                   key={index}
-                  className="absolute w-1 h-1 bg-pblue opacity-30"
+                  className="absolute w-1 h-1 bg-pblue opacity-50"
                   style={{
                     top: `${getThumbPositionFromIndex(index) + thumbHeight/2}px`,
                     left: '50%',
@@ -294,29 +288,31 @@ export default function CV() {
 
       {/* Right side - Current experience details */}
       <div className="flex-1 lg:max-w-md mt-6 lg:mt-0">
-        <div className="border border-pblue bg-background p-4 md:p-6 h-full min-h-[350px] md:min-h-[400px] overflow-hidden"> {/* Added overflow-hidden */}
+        <div className="border border-pblue bg-background p-4 md:p-6 h-full min-h-[350px] md:min-h-[400px] overflow-hidden">
           <div className="text-center text-background bg-pblue mb-4 text-sm md:text-base">[CURRENT SELECTION]</div>
           
           {experiences[currentIndex] && (
             <div className="flex flex-col gap-4 h-full overflow-hidden">
-              <div className="shrink-0">
-                <RandomTextReveal 
-                  className="text-2xl font-bold text-foreground mb-2 truncate" 
-                  text={experiences[currentIndex].title}
-                  duration={1000}
-                />
-                <RandomTextReveal 
-                  className="text-pblue text-lg truncate" 
-                  text={experiences[currentIndex].company}
-                  duration={800}
-                />
+              <div>
+                <div className='flex flex-col'>
+                    <RandomTextReveal 
+                    className="text-2xl font-bold text-foreground truncate" 
+                    text={experiences[currentIndex].title}
+                    duration={1000}
+                    />
+                    <RandomTextReveal 
+                    className="text-pblue text-lg truncate" 
+                    text={experiences[currentIndex].company}
+                    duration={500}
+                    />
+                </div>
                 <div className="text-sm opacity-75 mt-2">
                   <p className="truncate">{experiences[currentIndex].period}</p>
                   <p className="truncate">{experiences[currentIndex].location}</p>
                 </div>
               </div>
               
-              <div className='flex flex-col justify-between h-[75%]'>  
+              <div className='flex flex-col justify-between h-[70%]'>  
                 <div className="flex-1 min-h-0">
                     <h4 className="text-pblue mb-2">[DESCRIPTION]</h4>
                     <div className="overflow-hidden max-h-32">

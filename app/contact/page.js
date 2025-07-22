@@ -14,7 +14,7 @@ export default function Contact() {
         </div>
       </div>
       <div className="flex flex-col gap-2 md:text-3xl justify-end text-foreground h-[20vh]">
-        <a href="https://www.linkedin.com/in/z%C3%A9phyr-dassouli-1788b42a7/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150 w-fit">
+        <a href="https://www.linkedin.com/in/zephyr-dassouli-1788b42a7/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150 w-fit">
           LinkedIn
           <img src={`${process.env.NEXT_PUBLIC_BASE}/assets/link_arrow.png`} width={12} height={12} className="clickable w-2 md:w-3" style={{ imageRendering: 'pixelated' }} />
         </a>
