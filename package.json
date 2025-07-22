@@ -2,7 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://zephyr-dassouli.github.io/",
+  "homepage": "https://zephyrdassouli.github.io/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,7 +12,7 @@
     "deploy": "gh-pages -d out"
   },
   "dependencies": {
-    "next": "15.1.6",
+    "next": "^15.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "three": "^0.173.0"

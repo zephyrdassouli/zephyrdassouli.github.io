@@ -18,7 +18,7 @@ export default function Contact() {
           LinkedIn
           <img src={`${process.env.NEXT_PUBLIC_BASE}/assets/link_arrow.png`} width={12} height={12} className="clickable w-2 md:w-3" style={{ imageRendering: 'pixelated' }} />
         </a>
-        <a href="https://github.com/zephyr-dassouli" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150 w-fit">
+        <a href="https://github.com/zephyrdassouli" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150 w-fit">
           Github
           <img src={`${process.env.NEXT_PUBLIC_BASE}/assets/link_arrow.png`} width={12} height={12} className="clickable w-2 md:w-3" style={{ imageRendering: 'pixelated' }} />
         </a>
