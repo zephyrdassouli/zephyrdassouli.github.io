@@ -5,7 +5,6 @@ export default function RetroLoading({ onComplete, speedMultiplier = 1 }) {
   const [loadingText, setLoadingText] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
   const [dots, setDots] = useState('');
-  const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [animationComplete, setAnimationComplete] = useState(false);
 
@@ -18,16 +17,15 @@ export default function RetroLoading({ onComplete, speedMultiplier = 1 }) {
   ];
 
   // Adjust timing based on speed multiplier
-  const stepInterval = Math.floor(800 / speedMultiplier);
-  const typeSpeed = Math.floor(50 / speedMultiplier);
-  const dotSpeed = Math.floor(500 / speedMultiplier);
-  const progressSpeed = Math.floor(150 / speedMultiplier);
-  const finalDelay = Math.floor(1000 / speedMultiplier);
-  const completeDelay = Math.floor(1500 / speedMultiplier);
-  const minTotalTime = Math.floor(5000 / speedMultiplier);
+  const stepInterval = Math.floor(400 / speedMultiplier);
+  const typeSpeed = Math.floor(25 / speedMultiplier);
+  const dotSpeed = Math.floor(300 / speedMultiplier);
+  const finalDelay = Math.floor(500 / speedMultiplier);
+  const completeDelay = Math.floor(300 / speedMultiplier);
+  const minTotalTime = Math.floor(2500 / speedMultiplier);
 
   // Total animation time calculation
-  const totalAnimationTime = (loadingSteps.length - 1) * 800 + 1000; // Steps + final delay
+  const totalAnimationTime = (loadingSteps.length - 1) * 400 + 500; // Steps + final delay
 
   useEffect(() => {
     const stepIntervalId = setInterval(() => {
@@ -97,21 +95,6 @@ export default function RetroLoading({ onComplete, speedMultiplier = 1 }) {
     return () => clearInterval(dotInterval);
   }, [dotSpeed]);
 
-  useEffect(() => {
-    const startTimeRef = Date.now();
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        // Calculate target progress based on time elapsed
-        const targetProgress = Math.min(100, (Date.now() - startTimeRef) / minTotalTime * 100);
-        const increment = Math.random() * 8 + 2; // Random increment between 2-10
-        const newProgress = Math.min(targetProgress, prev + increment);
-        return newProgress >= 100 ? 100 : newProgress;
-      });
-    }, progressSpeed);
-
-    return () => clearInterval(progressInterval);
-  }, [minTotalTime, progressSpeed]);
-
   return (
     <div 
       className={`fixed inset-0 bg-background z-50 transition-opacity duration-500 ${
@@ -131,9 +114,6 @@ export default function RetroLoading({ onComplete, speedMultiplier = 1 }) {
                 loadingText : step}
             </span>
             {index === currentStep && !isComplete && <span className="animate-pulse">_</span>}
-            {index === currentStep && index < loadingSteps.length - 1 && (
-              <span className="text-pblue">{dots}</span>
-            )}
             {index === loadingSteps.length - 1 && currentStep === index && (
               <span className="text-pblue ml-2">DONE</span>
             )}
