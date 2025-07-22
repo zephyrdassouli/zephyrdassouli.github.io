@@ -90,10 +90,10 @@ export default function Projects() {
             </div>
           </div>
           <div className="text-base">
-            Research and optimization of blockchain protocols to secure IoT and Cloud/Edge infrastructures. Design, implementation, and performance evaluation
+            Real-time reputation-driven malicious node detection in federated learning within an operational decentralized research environment
             <br />
             <br />
-            <span className="opacity-80">Tools used : Hyperledger Fabric</span>
+            <span className="opacity-80">Tools used : Hyperledger Besu</span>
           </div>
         </div>
       </Window>
