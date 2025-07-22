@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 import RetroLoading from '@/components/loading/retroLoading';
 
 // Global variable to track if loading has been shown in this session
@@ -14,7 +13,6 @@ export default function ClientLayout({ children }) {
   const [showContent, setShowContent] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [fontLoaded, setFontLoaded] = useState(false);
-  const pathname = usePathname();
 
   // Check if custom font is loaded
   useEffect(() => {
@@ -42,13 +40,6 @@ export default function ClientLayout({ children }) {
     // Only set up loading behavior after font is loaded
     if (!fontLoaded) return;
 
-    // Only show loading screen on home page
-    if (pathname !== '/') {
-      setIsLoading(false);
-      setShowContent(true);
-      return;
-    }
-
     // Check if we've already shown loading in this browser session
     if (typeof window !== 'undefined' && window.__loadingShown) {
       // Skip loading for page navigation after initial load
@@ -73,7 +64,7 @@ export default function ClientLayout({ children }) {
     if (typeof window !== 'undefined') {
       window.__loadingShown = true;
     }
-  }, [fontLoaded, pathname]);
+  }, [fontLoaded]);
 
   const handleLoadingComplete = () => {
     // This will only be called after the full animation sequence completes

@@ -114,69 +114,39 @@ export default function RetroLoading({ onComplete, speedMultiplier = 1 }) {
 
   return (
     <div 
-      className={`fixed inset-0 bg-background z-50 flex flex-col items-center justify-center transition-opacity duration-500 ${
+      className={`fixed inset-0 bg-background z-50 transition-opacity duration-500 ${
         (isComplete && animationComplete) ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
-      {/* Retro Computer Frame */}
-      <div className="pixel-border-blue bg-background p-8 sm:max-w-md max-w-[90%] w-full mx-4 relative z-10">
-        {/* Screen Header */}
-        <div className="text-center text-pblue mb-6">
-          <div className="text-xs opacity-75 mb-2">GNU GRUB</div>
-          <div className="text-lg font-bold">ZEPHYR DASSOULI</div>
-          <div className="text-xs opacity-75 mt-1">Booting ...</div>
-        </div>
-
-        {/* Terminal-like loading area */}
-        <div className="bg-black bg-opacity-75 text-pblue p-4 text-xs min-h-48">
-          <div className="mb-2 text-foreground">arch@zeph:~$</div>
-          {loadingSteps.slice(0, currentStep + 1).map((step, index) => (
-            <div key={index} className="mb-1">
-              <span className="text-pblue">[</span>
-              <span className="text-pblue">OK</span>
-              <span className="text-pblue">]</span>
-              <span className="text-foreground ml-2">
-                {index === currentStep && index < loadingSteps.length - 1 ? 
-                  loadingText : step}
-              </span>
-              {index === currentStep && !isComplete && <span className="animate-pulse text-foreground">_</span>}
-              {index === currentStep && index < loadingSteps.length - 1 && (
-                <span className="text-pblue">{dots}</span>
-              )}
-              {index === loadingSteps.length - 1 && currentStep === index && (
-                <span className="text-pblue ml-2">DONE</span>
-              )}
-            </div>
-          ))}
-          {/* Show system ready message when complete */}
-          {isComplete && (
-            <div className="mt-2 text-pblue">
-              <span>Welcome!</span>
-            </div>
-          )}
-        </div>
-
-        {/* Progress Bar */}
-        <div className="mt-4">
-          <div className="flex justify-between text-xs text-pblue mb-1">
-            <span>BOOT PROGRESS</span>
-            <span>{Math.floor(progress)}%</span>
+      {/* TTY-style terminal in top left */}
+      <div className="absolute top-4 left-4 text-foreground text-sm">
+        <div className="mb-2">arch@zeph:~$</div>
+        {loadingSteps.slice(0, currentStep + 1).map((step, index) => (
+          <div key={index} className="mb-1">
+            <span className="text-pblue">[</span>
+            <span className="text-pblue">OK</span>
+            <span className="text-pblue">]</span>
+            <span className="ml-2">
+              {index === currentStep && index < loadingSteps.length - 1 ? 
+                loadingText : step}
+            </span>
+            {index === currentStep && !isComplete && <span className="animate-pulse">_</span>}
+            {index === currentStep && index < loadingSteps.length - 1 && (
+              <span className="text-pblue">{dots}</span>
+            )}
+            {index === loadingSteps.length - 1 && currentStep === index && (
+              <span className="text-pblue ml-2">DONE</span>
+            )}
           </div>
-          <div className="border border-pblue h-3 bg-background">
-            <div 
-              className="h-full bg-pblue transition-all duration-300"
-              style={{ width: `${Math.min(progress, 100)}%` }}
-            />
+        ))}
+        {/* Show system ready message when complete */}
+        {isComplete && (
+          <div className="mt-2 text-pblue">
+            <span>Welcome !</span>
           </div>
-        </div>
-
-        {/* Blinking cursor at bottom */}
-        <div className="mt-4 text-center">
-          <span className="text-pblue text-xs animate-pulse">
-            Press Enter to continue...
-          </span>
-        </div>
+        )}
       </div>
+
 
       {/* Grain effect on top of everything */}
       <div className="fixed z-30">
