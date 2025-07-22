@@ -1,0 +1,8 @@
+<!-- Placeholder SVG for scroll thumb - replace with your asset later -->
+<svg width="12" height="60" viewBox="0 0 12 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="12" height="60" fill="#003CFF"/>
+  <rect x="2" y="2" width="8" height="56" fill="#0050FF"/>
+  <rect x="4" y="20" width="4" height="4" fill="#ffffff"/>
+  <rect x="4" y="28" width="4" height="4" fill="#ffffff"/>
+  <rect x="4" y="36" width="4" height="4" fill="#ffffff"/>
+</svg>
