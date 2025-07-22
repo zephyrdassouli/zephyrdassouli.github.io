@@ -52,9 +52,10 @@ export default function CV() {
   ];
 
   const itemHeight = 180;
-  const containerHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? 350 : 400;
+  const containerHeight = typeof window !== 'undefined' && window.innerWidth < 768 ? 500 : 400;
   const thumbHeight = 64; // Fixed thumb height in pixels
   const trackHeight = containerHeight - thumbHeight - 4; // Available track space for thumb movement
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const getThumbPositionFromIndex = (index) => {
     if (experiences.length <= 1) return 2;
@@ -92,8 +93,44 @@ export default function CV() {
       setTimeout(() => setIsScrolling(false), 500); // Increased from 300ms to 500ms
     };
 
+    // Handle touch events for mobile
+    let touchStartY = 0;
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      e.preventDefault(); // Prevent default scrolling
+    };
+
+    const handleTouchEnd = (e) => {
+      if (isScrolling) return;
+      
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      
+      // Minimum swipe distance to trigger navigation
+      if (Math.abs(deltaY) < 30) return;
+      
+      setIsScrolling(true);
+      const delta = deltaY > 0 ? 1 : -1;
+      const newIndex = Math.max(0, Math.min(experiences.length - 1, currentIndex + delta));
+      setCurrentIndex(newIndex);
+      
+      setTimeout(() => setIsScrolling(false), 300);
+    };
+
     container.addEventListener('wheel', handleWheel, { passive: false });
-    return () => container.removeEventListener('wheel', handleWheel);
+    container.addEventListener('touchstart', handleTouchStart, { passive: true });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    return () => {
+      container.removeEventListener('wheel', handleWheel);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
+    };
   }, [currentIndex, experiences.length, isScrolling]);
 
   // Handle keyboard navigation
@@ -131,39 +168,41 @@ export default function CV() {
     e.preventDefault();
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    
-    const clientY = e.clientY || e.touches?.[0]?.clientY;
-    const deltaY = clientY - startY.current;
-    const thumbContainer = thumbRef.current?.parentElement;
-    if (!thumbContainer) return;
-
-    const rect = thumbContainer.getBoundingClientRect();
-    const currentThumbPos = getThumbPositionFromIndex(currentIndex);
-    const newThumbPos = currentThumbPos + deltaY;
-    const newIndex = getIndexFromThumbPosition(newThumbPos);
-    
-    if (newIndex !== currentIndex) {
-      setCurrentIndex(newIndex);
-      startY.current = clientY; // Reset reference point for smooth dragging
-    }
-  };
-
   const handleMouseUp = () => {
     setIsDragging(false);
   };
 
   useEffect(() => {
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
+      const handleMove = (e) => {
+        if (!isDragging) return;
+        
+        // Only handle desktop vertical dragging since mobile thumb is removed
+        const clientY = e.clientY || e.touches?.[0]?.clientY;
+        if (!clientY) return;
+        
+        const delta = clientY - startY.current;
+        const thumbContainer = thumbRef.current?.parentElement;
+        if (!thumbContainer) return;
+
+        const currentThumbPos = getThumbPositionFromIndex(currentIndex);
+        const newThumbPos = currentThumbPos + delta;
+        const newIndex = getIndexFromThumbPosition(newThumbPos);
+        
+        if (newIndex !== currentIndex) {
+          setCurrentIndex(newIndex);
+          startY.current = clientY;
+        }
+      };
+
+      document.addEventListener('mousemove', handleMove);
       document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('touchmove', handleMouseMove);
+      document.addEventListener('touchmove', handleMove);
       document.addEventListener('touchend', handleMouseUp);
       return () => {
-        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mousemove', handleMove);
         document.removeEventListener('mouseup', handleMouseUp);
-        document.removeEventListener('touchmove', handleMouseMove);
+        document.removeEventListener('touchmove', handleMove);
         document.removeEventListener('touchend', handleMouseUp);
       };
     }
@@ -176,11 +215,11 @@ export default function CV() {
     <div className="flex flex-col lg:flex-row gap-6 md:gap-8 w-full h-full p-4 md:p-6 lg:p-12">
       {/* Left side - CV wheel */}
       <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="relative w-full max-w-2xl pr-12 md:pr-16">
+        <div className="relative w-full max-w-2xl pr-0 md:pr-16">
           {/* Scroll container */}
           <div 
             ref={scrollContainerRef}
-            className="h-[350px] md:h-[400px] relative overflow-y-hidden overflow-visible  "
+            className="h-[500px] md:h-[400px] relative md:overflow-y-hidden"
           >
             {/* Center point reference */}
             <div className="absolute inset-0 flex items-center justify-center p-2">
@@ -231,7 +270,7 @@ export default function CV() {
                             </span>
                           ))}
                           {experience.skills.length > 3 && (
-                            <span className="text-xs opacity-75">+{experience.skills.length - 3} more</span>
+                            <span className="text-xs opacity-75 hidden md:inline">+{experience.skills.length - 3} more</span>
                           )}
                         </div>
                       </div>
@@ -243,8 +282,9 @@ export default function CV() {
           </div>
 
           {/* Custom scrollbar thumb */}
-          <div className="absolute right-[-40px] md:right-[-50px] top-0 w-6 md:w-8 h-full flex flex-col justify-center">
-            <div className="relative w-full h-[350px] md:h-[400px] bg-background border border-pblue ">
+          {/* Desktop - Vertical thumb */}
+          <div className="hidden md:flex absolute right-[-40px] md:right-[-50px] top-0 w-6 md:w-8 h-full flex-col justify-center">
+            <div className="relative w-full h-[500px] md:h-[400px] bg-background border border-pblue ">
               {/* Scroll track */}
               <div className="absolute inset-1 bg-background"></div>
               
@@ -273,7 +313,6 @@ export default function CV() {
                 onMouseDown={handleThumbMouseDown}
                 onTouchStart={handleThumbMouseDown}
               >
-                {/* Placeholder thumb image */}
                 <img 
                   src={`${process.env.NEXT_PUBLIC_BASE || ''}/assets/scroll_thumb.svg`} 
                   alt="Scroll thumb" 
@@ -287,7 +326,7 @@ export default function CV() {
       </div>
 
       {/* Right side - Current experience details */}
-      <div className="flex-1 lg:max-w-md mt-6 lg:mt-0">
+      <div className="flex-1 lg:max-w-md mt-6 lg:mt-0 hidden lg:block">
         <div className="border border-pblue bg-background p-4 md:p-6 h-full min-h-[350px] md:min-h-[400px] overflow-hidden">
           <div className="text-center text-background bg-pblue mb-4 text-sm md:text-base">[CURRENT SELECTION]</div>
           
