@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from 'react';
 import './windowStyle.css';
 import WindowPhoto from './windowPhoto';
 
-export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, assetTitle }) {
+export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, assetTitle, sidebarVisible = false, isMobile = false }) {
   // Ref to get the window dimensions
   const windowRef = useRef(null);
 
@@ -19,11 +19,11 @@ export default function Window({ children, className, title, variant = 'default'
 
   useEffect(() => {
     // Update the initial position when the component mounts or when the center changes
-    getRandomPosition(windowRef, setInitialPosition);
-  }, [windowRef]);
+    getRandomPosition(windowRef, setInitialPosition, sidebarVisible, isMobile);
+  }, [windowRef, sidebarVisible, isMobile]);
 
   // Ensure we have a valid position before rendering
-  const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialPosition.initialTop, initialPosition.initialLeft);
+  const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialPosition.initialTop, initialPosition.initialLeft, sidebarVisible, isMobile);
 
   // Handle close button click
   const handleXClick = () => {

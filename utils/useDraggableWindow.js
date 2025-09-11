@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 let globalZIndex = 10;
 
-export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
+export const useDraggableWindow = (windowRef, initialTop, initialLeft, sidebarVisible = false, isMobile = false) => {
   // Get dimensions of the window
   const [dimensions, setDimensions] = useState({ width: null, height: null });
 
@@ -38,26 +38,36 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
 
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
+    
+    // Calculate sidebar offset
+    let sidebarWidth = 0;
+    if (sidebarVisible && !isMobile) {
+      sidebarWidth = 350; // Desktop sidebar width
+    }
 
     setPosition((prevPosition) => {
       let newTop = prevPosition.top;
       let newLeft = prevPosition.left;
 
-      // Ensure window stays within bounds
+      // Calculate available width for windows (viewport minus sidebar)
+      const availableWidth = viewportWidth - sidebarWidth;
+      const maxLeft = sidebarWidth + availableWidth - dimensions.width;
+
+      // Ensure window stays within bounds (excluding sidebar area)
       if (newTop + dimensions.height > viewportHeight) {
         newTop = viewportHeight - dimensions.height;
       }
       if (newLeft + dimensions.width > viewportWidth) {
-        newLeft = viewportWidth - dimensions.width;
+        newLeft = maxLeft;
       }
 
-      // Prevent negative positions
+      // Prevent negative positions and sidebar overlap
       newTop = Math.max(40, newTop);
-      newLeft = Math.max(0, newLeft);
+      newLeft = Math.max(sidebarWidth + 2, Math.min(newLeft, maxLeft)); // Don't allow windows to go into sidebar area
 
       return { top: newTop, left: newLeft };
     });
-  }, [dimensions]);
+  }, [dimensions, sidebarVisible, isMobile]);
 
   // Adjust position when window is resized
   useEffect(() => {
@@ -95,16 +105,27 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft) => {
 
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
+      
+      // Calculate sidebar offset
+      let sidebarWidth = 0;
+      if (sidebarVisible && !isMobile) {
+        sidebarWidth = 350; // Desktop sidebar width
+      }
 
       const newTop = clientY - dragOffset.y;
       const newLeft = clientX - dragOffset.x;
 
+      // Calculate available width for windows (viewport minus sidebar)
+      const availableWidth = viewportWidth - sidebarWidth;
+      const maxLeft = sidebarWidth + availableWidth - dimensions.width - 2;
+
+      // Constrain windows to stay in main content area (right of sidebar)
       const constrainedTop = Math.max(45, Math.min(newTop, viewportHeight - dimensions.height - 5));
-      const constrainedLeft = Math.max(5, Math.min(newLeft, viewportWidth - dimensions.width - 5));
+      const constrainedLeft = Math.max(sidebarWidth + 2, Math.min(newLeft, maxLeft));
 
       setPosition({ top: constrainedTop, left: constrainedLeft });
     },
-    [isDragging, dragOffset, dimensions]
+    [isDragging, dragOffset, dimensions, sidebarVisible, isMobile]
   );
 
   const stopDrag = useCallback(() => {
