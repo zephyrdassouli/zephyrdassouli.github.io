@@ -219,7 +219,7 @@ export default function CV() {
           {/* Scroll container */}
           <div 
             ref={scrollContainerRef}
-            className="h-[500px] md:h-[400px] relative md:overflow-y-hidden"
+            className="h-[500px] md:h-[500px] relative md:overflow-y-hidden"
           >
             {/* Center point reference */}
             <div className="absolute inset-0 flex items-center justify-center p-2">
