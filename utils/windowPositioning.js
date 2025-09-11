@@ -19,7 +19,7 @@ export const getRandomPosition = (windowRef, setInitialPosition) => {
   left = centerX + r * Math.cos(angle);
 
   // Ensure windows stay within the main content area (right of sidebar)
-  top = Math.max(45, Math.min(top, viewportHeight - height - 5));
+  top = Math.max(10, Math.min(top, viewportHeight - height - 35));
   left = Math.max(sidebarWidth + 5, Math.min(left, viewportWidth - width - 5));
 
   setInitialPosition({ initialTop: top, initialLeft: left });

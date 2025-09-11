@@ -62,7 +62,7 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft, sidebarVi
       }
 
       // Prevent negative positions and sidebar overlap
-      newTop = Math.max(40, newTop);
+      newTop = Math.max(10, Math.min(newTop, viewportHeight - dimensions.height - 35));
       newLeft = Math.max(sidebarWidth + 2, Math.min(newLeft, maxLeft)); // Don't allow windows to go into sidebar area
 
       return { top: newTop, left: newLeft };
@@ -120,7 +120,7 @@ export const useDraggableWindow = (windowRef, initialTop, initialLeft, sidebarVi
       const maxLeft = sidebarWidth + availableWidth - dimensions.width - 2;
 
       // Constrain windows to stay in main content area (right of sidebar)
-      const constrainedTop = Math.max(45, Math.min(newTop, viewportHeight - dimensions.height - 5));
+      const constrainedTop = Math.max(10, Math.min(newTop, viewportHeight - dimensions.height - 35));
       const constrainedLeft = Math.max(sidebarWidth + 2, Math.min(newLeft, maxLeft));
 
       setPosition({ top: constrainedTop, left: constrainedLeft });
