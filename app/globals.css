@@ -46,24 +46,57 @@ body{
 }
 
 
-/* Custom scrollbar */
+/* Custom scrollbar - Minimal retro style */
 .thin-scrollbar {
   scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: var(--foreground) var(--background); /* For Firefox */
+  scrollbar-color: var(--pblue) transparent; /* For Firefox */
+  padding-right: 6px;
 }
 
 /* For WebKit browsers (Chrome, Edge, Safari) */
 .thin-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Adjust width as needed */
+  width: 6px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--pblue);
+  border-radius: 0;
+  border: 1px solid var(--foreground);
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--foreground);
-  border-radius: 0; /* Makes it squared */
+  border-color: var(--pblue);
+}
+
+/* Global scrollbar styling for all elements */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--pblue);
+  border: 1px solid var(--foreground);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+  border-color: var(--pblue);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pblue) transparent;
 }
 
 

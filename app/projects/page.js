@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import LinkButton from '@/components/projects/linkButton';
 import Window from '@/components/projects/window';
 
 export default function Projects() {
@@ -28,7 +29,11 @@ export default function Projects() {
   }, []);
 
   if (!def) return null;
-
+  // TODO Gerer la scroll bar quand le sidepannel s'anime
+  // TODO Meilleur front pour le sidepannel
+  // TODO Ajouter des vrais projets
+  // TODO Animation sur la sidebar
+  // TODO Revoir le boutton
   return (
     <div className='flex flex-row h-full overflow-hidden relative'>
       {/* Toggle Button - Top Right */}
@@ -45,7 +50,7 @@ export default function Projects() {
       <div className={`${isMobile
           ? (sidebarVisible ? 'fixed inset-0 w-full z-40' : 'hidden')
           : (sidebarVisible ? 'w-[350px] flex-shrink-0' : 'w-0 overflow-hidden')
-        } h-full bg-background border-r border-pblue transition-all duration-300`}>
+        } h-full bg-background border-pblue transition-all duration-300`}>
         <div className='pixel-border-blue h-full m-2'>
           <div className='p-4 h-full flex flex-col'>
             <div className='text-center border-b border-pblue pb-4 mb-4'>
@@ -54,25 +59,19 @@ export default function Projects() {
             </div>
 
             {/* Placeholder research items */}
-            <div className='flex-1 overflow-y-auto space-y-4'>
-              <div className='border border-pblue p-3 bg-background'>
-                <div className='text-sm font-bold text-pblue mb-2'>Placeholder Research #1</div>
-                <div className='text-xs text-foreground opacity-75 mb-1'>2024 - Ongoing</div>
-                <div className='text-xs text-foreground'>Description of security research project will go here...</div>
-              </div>
-
-              <div className='border border-pblue p-3 bg-background'>
-                <div className='text-sm font-bold text-pblue mb-2'>Placeholder Research #2</div>
-                <div className='text-xs text-foreground opacity-75 mb-1'>2023 - 2024</div>
-                <div className='text-xs text-foreground'>Another security research project description...</div>
-              </div>
-
-              <div className='border border-pblue p-3 bg-background'>
-                <div className='text-sm font-bold text-pblue mb-2'>Placeholder Research #3</div>
-                <div className='text-xs text-foreground opacity-75 mb-1'>2023</div>
-                <div className='text-xs text-foreground'>Third research project placeholder content...</div>
+            <div className='flex-1 overflow-y-auto space-y-4 thin-scrollbar'>
+              <div className='relative border border-pblue p-3 bg-background'>
+                <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
+                <div className='text-sm font-bold text-pblue mb-2'>FearlessCMS</div>
+                <div className='text-xs text-foreground opacity-75 mb-1'>2025 - 3 major vulnerabilities</div>
+                <div className='text-xs text-foreground pl-3'>
+                  <li>Reflected Cross-Site Scripting</li>
+                  <li>Arbitrary File Read via Path Traversal</li>
+                  <li>Directory Traversal in Plugin Deletion</li>
+                </div>
               </div>
             </div>
+            
 
             <div className='text-center text-xs text-foreground opacity-50 pt-4 border-t border-pblue'>
               More research coming soon...
