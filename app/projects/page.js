@@ -48,7 +48,7 @@ export default function Projects() {
 
       {/* Security Research Sidebar */}
       <div className={`${isMobile
-          ? (sidebarVisible ? 'fixed inset-0 w-full z-40' : 'hidden')
+          ? (sidebarVisible ? 'fixed inset-0 z-40' : 'hidden')
           : (sidebarVisible ? 'w-[350px] flex-shrink-0' : 'w-0 overflow-hidden')
         } h-full bg-background border-pblue transition-all duration-300`}>
         <div className='pixel-border-blue h-full m-2'>

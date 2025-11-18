@@ -16,11 +16,15 @@ export default function Window({ children, className, title, variant = 'default'
 
   // Set initial position using a function to ensure randomness
   const [initialPosition, setInitialPosition] = useState({ initialTop: 0, initialLeft: 0 });
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   useEffect(() => {
-    // Update the initial position when the component mounts or when the center changes
-    getRandomPosition(windowRef, setInitialPosition, sidebarVisible, isMobile);
-  }, [windowRef, sidebarVisible, isMobile]);
+    // Only set initial position once on mount
+    if (!hasInitialized) {
+      getRandomPosition(windowRef, setInitialPosition, sidebarVisible, isMobile);
+      setHasInitialized(true);
+    }
+  }, [hasInitialized]);
 
   // Ensure we have a valid position before rendering
   const { position, zIndex, dragListeners } = useDraggableWindow(windowRef, initialPosition.initialTop, initialPosition.initialLeft, sidebarVisible, isMobile);
