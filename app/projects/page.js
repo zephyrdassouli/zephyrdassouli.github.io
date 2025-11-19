@@ -29,11 +29,6 @@ export default function Projects() {
   }, []);
 
   if (!def) return null;
-  // TODO Gerer la scroll bar quand le sidepannel s'anime
-  // TODO Meilleur front pour le sidepannel
-  // TODO Ajouter des vrais projets
-  // TODO Animation sur la sidebar
-  // TODO Revoir le boutton
   return (
     <div className='flex flex-row h-full overflow-hidden relative'>
       {/* Toggle Button - Top Right */}
@@ -53,13 +48,13 @@ export default function Projects() {
         } h-full bg-background border-pblue transition-all duration-300`}>
         <div className='pixel-border-blue h-full m-2'>
           <div className='p-4 h-full flex flex-col'>
-            <div className='text-center border-b border-pblue pb-4 mb-4'>
+            <div className='text-center border-b border-pblue mx-[6px] pb-4 mb-4'>
               <h2 className='text-xl font-bold text-pblue'>SECURITY RESEARCH</h2>
-              <div className='text-sm opacity-75 text-foreground mt-1'>Research & Analysis</div>
+              <div className='text-sm opacity-75 text-foreground mt-1'>Vulnerability Research</div>
             </div>
 
             {/* Placeholder research items */}
-            <div className='flex-1 overflow-y-auto space-y-4 thin-scrollbar'>
+            <div className='flex-1 overflow-y-auto space-y-4 pl-[6px] thin-scrollbar'>
               <div className='relative border border-pblue p-3 bg-background'>
                 <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
                 <div className='text-sm font-bold text-pblue mb-2'>FearlessCMS</div>
