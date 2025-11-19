@@ -14,7 +14,16 @@ export default function CV() {
   // Professional experiences data
   const experiences = [
     {
-      id: 1,
+      id: 5,
+      title: "Consulting Intern",
+      company: "SQLI",
+      period: "Sep 2025 - Current",
+      location: "Toulouse, France",
+      description: "Contribution to the design, development and deployment of generative AI solutions within SQLI’s consulting division",
+      skills: ["Consulting", "AI/ML", "Architecture"]
+    },
+    {
+      id: 4,
       title: "Research Intern",
       company: "University of Amsterdam",
       period: "Apr 2025 - Jul 2025",
@@ -23,7 +32,7 @@ export default function CV() {
       skills: ["Blockchain", "AI/ML", "Cybersecurity"]
     },
     {
-      id: 2,
+      id: 3,
       title: "Engineering Intern",
       company: "MecaOctet",
       period: "Jun 2024 - Jul 2024",
@@ -32,7 +41,7 @@ export default function CV() {
       skills: ["Linux", "IoT", "Modbus", "Python"]
     },
     {
-      id: 3,
+      id: 2,
       title: "Master Student",
       company: "IMT Atlantique",
       period: "2023 - Current",
@@ -41,7 +50,7 @@ export default function CV() {
       skills: ["Cybersecurity", "Software Engineering", "Networks", "Maths", "Physics"]
     },
       {
-      id: 4,
+      id: 1,
       title: "Preparatory Class Student",
       company: "Lycée Déodat de Séverac",
       period: "2021 - 2023",
@@ -219,7 +228,7 @@ export default function CV() {
           {/* Scroll container */}
           <div 
             ref={scrollContainerRef}
-            className="h-[500px] md:h-[500px] relative md:overflow-y-hidden"
+            className="h-[100vh] relative md:overflow-y-hidden"
           >
             {/* Center point reference */}
             <div className="absolute inset-0 flex items-center justify-center p-2">
