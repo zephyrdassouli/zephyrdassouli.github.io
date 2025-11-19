@@ -2,11 +2,13 @@
 import { useState, useEffect } from 'react';
 import LinkButton from '@/components/projects/linkButton';
 import Window from '@/components/projects/window';
+import RandomTextReveal from '@/components/randomTextReveal';
 
 export default function Projects() {
   const [def, setDef] = useState(null);
   const [sidebarVisible, setSidebarVisible] = useState(false); // Hidden by default on mobile
   const [isMobile, setIsMobile] = useState(false);
+  const [showSidebarContent, setShowSidebarContent] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -18,6 +20,8 @@ export default function Projects() {
         setIsMobile(mobile);
         if (!mobile) {
           setSidebarVisible(true); // Show sidebar by default on desktop
+          // Delay content reveal for desktop initial load
+          setTimeout(() => setShowSidebarContent(true), 10);
         }
       };
 
@@ -27,6 +31,18 @@ export default function Projects() {
       return () => window.removeEventListener('resize', checkMobile);
     }
   }, []);
+
+  // Handle sidebar visibility changes and content animation
+  useEffect(() => {
+    if (sidebarVisible) {
+      // Show content after sidebar is fully opened (300ms transition)
+      const timer = setTimeout(() => setShowSidebarContent(true), 300);
+      return () => clearTimeout(timer);
+    } else {
+      // Hide content immediately when closing
+      setShowSidebarContent(false);
+    }
+  }, [sidebarVisible]);
 
   if (!def) return null;
   return (
@@ -48,28 +64,41 @@ export default function Projects() {
         } h-full bg-background border-pblue transition-all duration-300`}>
         <div className='pixel-border-blue h-full m-2'>
           <div className='p-4 h-full flex flex-col'>
-            <div className='text-center border-b border-pblue mx-[6px] pb-4 mb-4'>
-              <h2 className='text-xl font-bold text-pblue'>SECURITY RESEARCH</h2>
-              <div className='text-sm opacity-75 text-foreground mt-1'>Vulnerability Research</div>
-            </div>
-
-            {/* Placeholder research items */}
-            <div className='flex-1 overflow-y-auto space-y-4 pl-[6px] thin-scrollbar'>
-              <div className='relative border border-pblue p-3 bg-background'>
-                <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
-                <div className='text-sm font-bold text-pblue mb-2'>FearlessCMS</div>
-                <div className='text-xs text-foreground opacity-75 mb-1'>2025 - 3 major vulnerabilities</div>
-                <div className='text-xs text-foreground pl-3'>
-                  <li>Reflected Cross-Site Scripting</li>
-                  <li>Arbitrary File Read via Path Traversal</li>
-                  <li>Directory Traversal in Plugin Deletion</li>
+            <div className={`transition-opacity duration-200 ${showSidebarContent ? 'opacity-100' : 'opacity-0'}`}>
+              {showSidebarContent && (
+                <>
+                  <div className='text-center border-b border-pblue mx-[6px] pb-4 mb-4'>
+                  <h2 className='text-xl font-bold text-pblue'>
+                    <RandomTextReveal text="SECURITY RESEARCH" duration={800} />
+                  </h2>
+                  <div className='text-sm opacity-75 text-foreground mt-1'>
+                    <RandomTextReveal text="Vulnerability Research" duration={1000} />
+                  </div>
                 </div>
-              </div>
-            </div>
-            
 
-            <div className='text-center text-xs text-foreground opacity-50 pt-4 border-t border-pblue'>
-              More research coming soon...
+                {/* Placeholder research items */}
+                <div className='flex-1 overflow-y-auto space-y-4 pl-[6px] thin-scrollbar'>
+                  <div className='relative border border-pblue p-3 bg-background'>
+                    <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
+                    <div className='text-sm font-bold text-pblue mb-2'>
+                      <RandomTextReveal text="FearlessCMS" duration={600} />
+                    </div>
+                    <div className='text-xs text-foreground opacity-75 mb-1'>
+                      <RandomTextReveal text="2025 - 3 major vulnerabilities" duration={800} />
+                    </div>
+                    <div className='text-xs text-foreground pl-3'>
+                      <li><RandomTextReveal text="Reflected Cross-Site Scripting" duration={900} /></li>
+                      <li><RandomTextReveal text="Arbitrary File Read via Path Traversal" duration={1000} /></li>
+                      <li><RandomTextReveal text="Directory Traversal in Plugin Deletion" duration={1100} /></li>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className='text-center text-xs text-foreground opacity-50 pt-4 border-t border-pblue'>
+                  <RandomTextReveal text="More research coming soon..." duration={700} />
+                </div>
+              </>
+            )}
             </div>
           </div>
         </div>
