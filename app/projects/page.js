@@ -211,6 +211,33 @@ export default function Projects() {
           </div>
         </Window>
 
+        {/* Magelan */}
+        <Window
+          title={'Magelan²'}
+          className={' w-[300px] sm:w-[400px] grow-fade'}
+          variant="inverted"
+          sidebarVisible={sidebarVisible}
+          isMobile={isMobile}
+        >
+          <div className="h-full flex flex-col gap-4">
+            <div className=" flex items-center gap-6">
+              <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/cerema.png`} alt="cerema" style={{ imageRendering: 'pixelated' }} className="w-12" />
+              <div>
+                <div className="font-bold text-lg ">
+                  Cerema, Junior Atlantique <br /> Magelan²
+                </div>
+                <div className="text-sm opacity-75 ">2025</div>
+              </div>
+            </div>
+            <div className="text-base">
+              Developement of a new version of Magelan for Cerema, improving lighthouse and coastal beacon calculations, with security audit and compliance to national standards
+              <br />
+              <br />
+              <span className="opacity-80">Tools used : React, Docker</span>
+            </div>
+          </div>
+        </Window>
+
         {/* Glimmy */}
         <Window
           title={'Glimmy'}
