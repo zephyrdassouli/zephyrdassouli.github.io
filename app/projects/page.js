@@ -215,7 +215,7 @@ export default function Projects() {
         <Window
           title={'Glimmy'}
           className={' w-[300px] sm:w-[400px] grow-fade'}
-          videoLink={`${process.env.NEXT_PUBLIC_BASE}/videos/video_transat.mp4`}
+          link="https://github.com/zephyrdassouli/glimmy"
           assetTitle={'TRANSAT_PREVIEW.MP4'}
           variant="blue"
           sidebarVisible={sidebarVisible}

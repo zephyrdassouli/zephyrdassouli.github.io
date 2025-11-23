@@ -2,11 +2,12 @@
 import { useDraggableWindow } from '@/utils/useDraggableWindow';
 import { getRandomPosition } from '@/utils/windowPositioning';
 import WindowVideo from './windowVideo';
+import WindowPhoto from './windowPhoto';
+import WindowLink from './windowLink';
 import { useState, useRef, useEffect } from 'react';
 import './windowStyle.css';
-import WindowPhoto from './windowPhoto';
 
-export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, assetTitle, sidebarVisible = false, isMobile = false }) {
+export default function Window({ children, className, title, variant = 'default', videoLink, photoLink, link, assetTitle, sidebarVisible = false, isMobile = false }) {
   // Ref to get the window dimensions
   const windowRef = useRef(null);
 
@@ -58,7 +59,7 @@ export default function Window({ children, className, title, variant = 'default'
         </button>
       </div>
 
-      {/* Video or Photo or Content */}
+      {/* Video, Photo, Link or Content */}
       {videoLink ? (
         <WindowVideo title={assetTitle} videoLink={videoLink} windowPosition={position}>
           <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
@@ -67,6 +68,10 @@ export default function Window({ children, className, title, variant = 'default'
         <WindowPhoto title={assetTitle} photoLink={photoLink} windowPosition={position}>
           <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
         </WindowPhoto>
+      ) : link ? (
+        <WindowLink link={link} variant={variant}>
+          <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} clickable w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
+        </WindowLink>
       ) : (
         <div className={`${variant === 'default' && 'text-background bg-foreground'} ${variant === 'blue' && 'text-foreground bg-pblue'} ${variant === 'inverted' && 'text-foreground bg-background'} w-full h-full flex items-center justify-start p-4 pt-8`}>{children}</div>
       )}
