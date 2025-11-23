@@ -47,10 +47,10 @@ export default function Projects() {
   if (!def) return null;
   return (
     <div className='flex flex-row h-full overflow-hidden relative'>
-      {/* Toggle Button - Top Right */}
+      {/* Toggle Button - Top Right on Desktop, Bottom Center on Mobile */}
       <button
         onClick={() => setSidebarVisible(!sidebarVisible)}
-        className={`fixed top-4 right-4 z-50 px-3 py-2 text-xs font-mono border border-pblue bg-background text-pblue hover:bg-pblue hover:text-background transition-colors ${sidebarVisible ? 'text-pblue' : 'text-foreground'
+        className={`fixed h-fit sm:top-4 sm:right-4 bottom-4 left-1/2 sm:left-auto transform -translate-x-1/2 sm:translate-x-0 z-50 px-3 py-2 text-xs font-mono border border-pblue bg-background text-pblue hover:bg-pblue hover:text-background transition-colors ${sidebarVisible ? 'text-pblue' : 'text-foreground'
           }`}
         style={{ fontFamily: 'monospace' }}
       >
