@@ -199,7 +199,7 @@ export default function Projects() {
                 <div className="font-bold text-lg ">
                   University of Amsterdam <br /> Research
                 </div>
-                <div className="text-sm opacity-75 ">2025 - Current</div>
+                <div className="text-sm opacity-75 ">2025</div>
               </div>
             </div>
             <div className="text-base">
@@ -207,6 +207,33 @@ export default function Projects() {
               <br />
               <br />
               <span className="opacity-80">Tools used : Hyperledger Besu</span>
+            </div>
+          </div>
+        </Window>
+
+        {/* Glimmy */}
+        <Window
+          title={'Glimmy'}
+          className={' w-[300px] sm:w-[400px] grow-fade'}
+          videoLink={`${process.env.NEXT_PUBLIC_BASE}/videos/video_transat.mp4`}
+          assetTitle={'TRANSAT_PREVIEW.MP4'}
+          variant="blue"
+          sidebarVisible={sidebarVisible}
+          isMobile={isMobile}
+        >
+          <div className="h-full flex flex-col gap-4">
+            <div className=" flex items-center gap-6">
+              <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/glimmy.png`} alt="Glimmy" style={{ imageRendering: 'pixelated' }} className="w-20" />
+              <div>
+                <div className="font-bold text-lg ">Glimmy / OS development</div>
+                <div className="text-sm opacity-75 ">2025 - Current</div>
+              </div>
+            </div>
+            <div className="text-base">
+              An Alpine based linux distribution designed to make self-hosting accessible. Glimmy is designed to embody everything modern tech isn't: free, fun, and completely owned by you.
+              <br />
+              <br />
+              <span className="opacity-80">Tools used : Go, Linux, Containerd</span>
             </div>
           </div>
         </Window>
