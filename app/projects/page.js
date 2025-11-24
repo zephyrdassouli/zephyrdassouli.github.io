@@ -224,7 +224,7 @@ export default function Projects() {
               <img src={`${process.env.NEXT_PUBLIC_BASE}/projects/cerema.png`} alt="cerema" style={{ imageRendering: 'pixelated' }} className="w-12" />
               <div>
                 <div className="font-bold text-lg ">
-                  Cerema, Junior Atlantique <br /> Magelan²
+                  Cerema <br /> Magelan²
                 </div>
                 <div className="text-sm opacity-75 ">2025</div>
               </div>
