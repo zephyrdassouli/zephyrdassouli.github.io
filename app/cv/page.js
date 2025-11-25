@@ -335,7 +335,7 @@ export default function CV() {
       </div>
 
       {/* Right side - Current experience details */}
-      <div className="flex-1 lg:max-w-md mt-6 lg:mt-0 hidden lg:block">
+      <div className="flex-1 xl:max-w-md mt-6 xl:mt-0 hidden xl:block">
         <div className="border border-pblue bg-background p-4 md:p-6 h-full min-h-[350px] md:min-h-[400px] overflow-hidden">
           <div className="text-center text-background bg-pblue mb-4 text-sm md:text-base">[CURRENT SELECTION]</div>
           
