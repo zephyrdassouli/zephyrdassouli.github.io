@@ -340,7 +340,7 @@ export default function CV() {
           <div className="text-center text-background bg-pblue mb-4 text-sm md:text-base">[CURRENT SELECTION]</div>
           
           {experiences[currentIndex] && (
-            <div className="flex flex-col gap-4 h-full overflow-hidden">
+            <div className="flex flex-col h-[calc(100%-3rem)]">
               <div>
                 <div className='flex flex-col'>
                     <RandomTextReveal 
@@ -360,27 +360,25 @@ export default function CV() {
                 </div>
               </div>
               
-              <div className='flex flex-col justify-between h-[70%]'>  
-                <div className="flex-1 min-h-0">
-                    <h4 className="text-pblue mb-2">[DESCRIPTION]</h4>
-                    <div className="overflow-hidden max-h-32">
-                    <RandomTextReveal 
-                        className="text-foreground text-sm" 
-                        text={experiences[currentIndex].description}
-                        duration={1200}
-                    />
-                    </div>
+              <div className="flex-1 mt-4">
+                <h4 className="text-pblue mb-2">[DESCRIPTION]</h4>
+                <div className="overflow-hidden">
+                  <RandomTextReveal 
+                    className="text-foreground text-sm" 
+                    text={experiences[currentIndex].description}
+                    duration={1200}
+                  />
                 </div>
-                
-                <div className="shrink-0">
-                    <h4 className="text-pblue mb-2">[SKILLS]</h4>
-                    <div className="flex flex-wrap gap-2 overflow-hidden">
-                    {experiences[currentIndex].skills.map((skill, i) => (
-                        <span key={i} className="text-xs bg-pblue text-background px-2 py-1 truncate">
-                        {skill}
-                        </span>
-                    ))}
-                    </div>
+              </div>
+              
+              <div className="mt-auto pt-4">
+                <h4 className="text-pblue mb-2">[SKILLS]</h4>
+                <div className="flex flex-wrap gap-2">
+                  {experiences[currentIndex].skills.map((skill, i) => (
+                    <span key={i} className="text-xs bg-pblue text-background px-2 py-1 truncate">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
