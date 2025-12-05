@@ -230,10 +230,10 @@ export default function Projects() {
               </div>
             </div>
             <div className="text-base">
-              Developement of a new version of Magelan for Cerema, improving lighthouse and coastal beacon calculations, with security audit and compliance to national standards
+              Developement and maintenance of a new version of Magelan for Cerema, improving lighthouse and coastal beacon calculations, with security audit and compliance to national standards
               <br />
               <br />
-              <span className="opacity-80">Tools used : React, Docker</span>
+              <span className="opacity-80">Tools used : React, Docker, GitLab CI</span>
             </div>
           </div>
         </Window>
