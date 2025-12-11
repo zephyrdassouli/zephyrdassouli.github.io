@@ -59,8 +59,8 @@ export default function Projects() {
 
       {/* Security Research Sidebar */}
       <div className={`${isMobile
-          ? (sidebarVisible ? 'fixed inset-0 z-40' : 'hidden')
-          : (sidebarVisible ? 'w-[350px] flex-shrink-0' : 'w-0 overflow-hidden')
+        ? (sidebarVisible ? 'fixed inset-0 z-40' : 'hidden')
+        : (sidebarVisible ? 'w-[350px] flex-shrink-0' : 'w-0 overflow-hidden')
         } h-full bg-background border-pblue transition-all duration-300`}>
         <div className='pixel-border-blue h-full m-2'>
           <div className='p-4 h-full flex flex-col'>
@@ -68,37 +68,45 @@ export default function Projects() {
               {showSidebarContent && (
                 <>
                   <div className='text-center border-b border-pblue mx-[6px] pb-4 mb-4'>
-                  <h2 className='text-xl font-bold text-pblue'>
-                    <RandomTextReveal text="SECURITY RESEARCH" duration={800} />
-                  </h2>
-                  <div className='text-sm opacity-75 text-foreground mt-1'>
-                    <RandomTextReveal text="Vulnerability Research" duration={1000} />
+                    <h2 className='text-xl font-bold text-pblue'>
+                      <RandomTextReveal text="SECURITY RESEARCH" duration={800} />
+                    </h2>
+                    <div className='text-sm opacity-75 text-foreground mt-1'>
+                      <RandomTextReveal text="Vulnerability Research" duration={1000} />
+                    </div>
                   </div>
-                </div>
 
-                {/* Placeholder research items */}
-                <div className='flex-1 overflow-y-auto space-y-4 pl-[6px] thin-scrollbar'>
-                  <div className='relative border border-pblue p-3 bg-background'>
-                    <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
-                    <div className='text-sm font-bold text-pblue mb-2'>
-                      <RandomTextReveal text="FearlessCMS" duration={600} />
-                    </div>
-                    <div className='text-xs text-foreground opacity-75 mb-1'>
-                      <RandomTextReveal text="2025 - 3 major vulnerabilities" duration={800} />
-                    </div>
-                    <div className='text-xs text-foreground pl-3'>
-                      <li><RandomTextReveal text="Reflected Cross-Site Scripting" duration={900} /></li>
-                      <li><RandomTextReveal text="Arbitrary File Read via Path Traversal" duration={1000} /></li>
-                      <li><RandomTextReveal text="Directory Traversal in Plugin Deletion" duration={1100} /></li>
+                  <div className='flex-1 overflow-y-auto space-y-4 pl-[6px] thin-scrollbar'>
+                    <div className='relative border border-pblue p-3 bg-background'>
+                      <LinkButton link="https://github.com/fearlessgeekmedia/FearlessCMS/issues/36" />
+                      <div className='text-sm font-bold text-pblue mb-1'>
+                        <RandomTextReveal text="FearlessCMS" duration={600} />
+                      </div>
+                      <div className='text-xs text-foreground opacity-75 mb-1'>
+                        <RandomTextReveal text="2025 - 3 major vulnerabilities" duration={800} />
+                      </div>
+                      <div className='text-xs text-foreground pl-3 space-y-2'>
+                        <div>
+                          <li className='font-mono font-bold text-foreground'><RandomTextReveal text="CVE-2025-56429" duration={900} /></li>
+                          <div className='text-xs opacity-60'><RandomTextReveal text="Reflected Cross-Site Scripting" duration={950} /></div>
+                        </div>
+                        <div>
+                          <li className='font-mono font-bold text-foreground'><RandomTextReveal text="CVE-2025-56430" duration={1100} /></li>
+                          <div className='text-xs opacity-60'><RandomTextReveal text="Directory Traversal in Plugin Deletion" duration={1150} /></div>
+                        </div>
+                        <div>
+                          <li className='font-mono font-bold text-foreground'><RandomTextReveal text="CVE-2025-56431" duration={1000} /></li>
+                          <div className='text-xs opacity-60'><RandomTextReveal text="Arbitrary File Read via Path Traversal" duration={1050} /></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className='text-center text-xs text-foreground opacity-50 pt-4 border-t border-pblue'>
-                  <RandomTextReveal text="More research coming soon..." duration={700} />
-                </div>
-              </>
-            )}
+
+                  <div className='text-center text-xs text-foreground opacity-50 pt-4 border-t border-pblue'>
+                    <RandomTextReveal text="More research coming soon..." duration={700} />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
