@@ -19,7 +19,7 @@ export default function CV() {
       company: "SQLI",
       period: "Sep 2025 - Current",
       location: "Toulouse, France",
-      description: "Contribution to the design, development and deployment of generative AI solutions within SQLI’s consulting division",
+      description: "Internship within SQLI’s consulting team. R&D activities and client support on innovation projects. Design, development, and deployment of generative AI solutions.",
       skills: ["Consulting", "AI/ML", "Architecture"]
     },
     {
