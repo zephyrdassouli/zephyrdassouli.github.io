@@ -1,5 +1,6 @@
 import './globals.css';
 import Script from 'next/script';
+import { Suspense } from 'react';
 
 import Header from '@/components/header/header';
 import ClientLayout from './clientLayout';
@@ -39,12 +40,14 @@ export default function RootLayout({ children }) {
               </Script>
             </>
           )}
-          <ClientLayout>
-            <main className="w-screen h-screen overflow-hidden fixed top-0 left-0 flex flex-col">
-              <Header />
-              {children}
-            </main>
-          </ClientLayout>
+          <Suspense fallback={null}>
+            <ClientLayout>
+              <main className="w-screen h-screen overflow-hidden fixed top-0 left-0 flex flex-col">
+                <Header />
+                {children}
+              </main>
+            </ClientLayout>
+          </Suspense>
         </div>
       </body>
     </html>
