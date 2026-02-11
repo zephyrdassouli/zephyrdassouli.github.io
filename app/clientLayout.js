@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import RetroLoading from '@/components/loading/retroLoading';
 
 // Global variable to track if loading has been shown in this session
@@ -13,6 +14,9 @@ export default function ClientLayout({ children }) {
   const [showContent, setShowContent] = useState(false);
   const [speedMultiplier, setSpeedMultiplier] = useState(1);
   const [fontLoaded, setFontLoaded] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   // Check if custom font is loaded
   useEffect(() => {
@@ -71,6 +75,18 @@ export default function ClientLayout({ children }) {
     setIsLoading(false);
     setTimeout(() => setShowContent(true), 300);
   };
+
+  useEffect(() => {
+    if (!gaId || !pathname) return;
+    const search = searchParams?.toString();
+    const pagePath = search ? `${pathname}?${search}` : pathname;
+
+    // Track client-side route changes for GA4
+    window.gtag?.('config', gaId, {
+      page_path: pagePath,
+      page_location: window.location.href,
+    });
+  }, [gaId, pathname, searchParams]);
 
   return (
     <>
